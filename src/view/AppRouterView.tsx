@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import PathVariable from '../global/PathVariable';
+import PathVariable from '../consts/PathVariable';
 import TestView from './test/TestView';
 import NotPageView from './NotPageView';
 import AppNavBar from '../compent/navbar/AppNavBar';
@@ -14,7 +14,9 @@ import KakaoRedirectView from './login/KakaoRedirectView';
 const AppRouterView = () => {
   return (
     <>
-      <AppNavBar />
+      <header>
+        <AppNavBar />
+      </header>
       <Routes>
         {/* 메인 화면 Path */}
         <Route path={PathVariable.ROOT_VIEW_PATH} element={<MainPageView />}>

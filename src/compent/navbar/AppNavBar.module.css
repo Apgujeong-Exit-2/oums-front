@@ -1,0 +1,13 @@
+.topNavBar {
+    margin-top: 16px;
+}
+
+.topNavText {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.loginButton {
+    text-align: right;
+    font-weight: bold;
+}
