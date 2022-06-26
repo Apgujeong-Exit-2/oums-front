@@ -1,6 +1,6 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import PathVariable from '../../gobal/PathVariable';
+import PathVariable from '../../global/PathVariable';
 
 const AppNavBar = () => {
   return (
@@ -13,9 +13,6 @@ const AppNavBar = () => {
           <Nav className='me-auto'>
             <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH}>
               Test
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH_2}>
-              Test2
             </Nav.Link>
             <Nav.Link as={Link} to={PathVariable.LOGIN_VIEW_PATH}>
               Login

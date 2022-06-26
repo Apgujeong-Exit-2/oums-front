@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 // import {getCookie} from "./customCookie";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_BASE_URL;
 const axiosConfig: AxiosInstance = axios.create({
   baseURL: `${API_URL}`,
   timeout: 5000,

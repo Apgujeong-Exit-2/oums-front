@@ -5,10 +5,12 @@ const PathVariable = {
 
   // test path
   TEST_VIEW_PATH: '/test',
-  TEST_VIEW_PATH_2: '/test2',
 
   // login path
   LOGIN_VIEW_PATH: '/login',
+
+  // kakao api path
+  KAKAO_REDIRECT_PATH: '/kakao/login/redirect',
 };
 
 export default PathVariable;
