@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import PathVariable from '../consts/PathVariable';
-import TestView from './test/TestView';
+import TestView from './TestView';
 import NotPageView from './NotPageView';
 import AppNavBar from '../compent/navbar/AppNavBar';
-import MainPageView from './main/MainPageView';
-import LoginView from './login/LoginView';
-import KakaoRedirectView from './login/KakaoRedirectView';
+import MainPageView from './MainPageView';
+import LoginView from './LoginView';
+import KakaoRedirectView from './KakaoRedirectView';
 
 /**
  * 어플리케이션의 전체 라우터를 설정하는 View

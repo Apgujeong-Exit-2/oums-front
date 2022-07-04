@@ -1,7 +1,13 @@
 import { Button } from 'react-bootstrap';
 import KakaoApiPathVariable from '../../consts/KakaoApiPathVariable';
 
-const KakaoLoginButton = () => {
+interface props {
+  style?: object;
+  variant?: string;
+  text: string;
+}
+
+const KakaoLoginButton = (props: props) => {
   // 카카오톡 로그인 버튼 클릭 이벤트
   const onClickKakaoLoginButtonHandler = () => {
     window.location.href = KakaoApiPathVariable.KAKAO_AUTHORIZE_PATH;
@@ -10,11 +16,11 @@ const KakaoLoginButton = () => {
   return (
     <Button
       onClick={onClickKakaoLoginButtonHandler}
-      size='sm'
-      variant='light'
-      style={{ fontWeight: 'bold' }}
+      size={'sm'}
+      variant={props.variant}
+      style={props.style}
     >
-      로그인
+      {props.text}
     </Button>
   );
 };
