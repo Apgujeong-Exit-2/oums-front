@@ -2,7 +2,11 @@ import apiUtil from '../util/apiUtil';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 
-const KakaoRedirectView = (props: any) => {
+/**
+ * 카카오톡 로그인 리다이렉트 View
+ * @constructor
+ */
+const KakaoRedirectView = () => {
   const [code, setCode] = useState(queryString.parse(window.location.search).code);
   const [token, setToken] = useState('');
 

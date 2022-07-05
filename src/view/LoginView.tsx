@@ -8,7 +8,7 @@ const LoginView = () => {
   return (
     <>
       <h2>로그인 화면입니다.</h2>
-      <KakaoLoginButton />
+      <KakaoLoginButton text={'로그인'} />
     </>
   );
 };
