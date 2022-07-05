@@ -1,13 +1,15 @@
-.topNavBar {
-    margin-top: 16px;
+.root {
+  height: 80px;
+  padding: 0 20px;
+  background-color: white;
 }
 
-.topNavText {
-    font-size: 14px;
-    font-weight: bold;
+.subRoot {
+  height: 28px;
+  margin-top: 80px;
+  background-color: white;
 }
 
-.loginButton {
-    text-align: right;
-    font-weight: bold;
+.mainContainer {
+  max-width: 1180px;
 }

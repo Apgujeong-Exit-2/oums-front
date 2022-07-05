@@ -1,0 +1,18 @@
+.nav-link {
+  padding-right: 5rem !important;
+}
+
+.sub-nav-link {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .nav-link {
+    display: none;
+  }
+
+  .sub-nav-link {
+    display: block;
+    padding-right: 1rem !important;
+  }
+}

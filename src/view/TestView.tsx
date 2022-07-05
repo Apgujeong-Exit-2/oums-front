@@ -1,7 +1,7 @@
 import { Button, Container, FormControl, InputGroup } from 'react-bootstrap';
-import apiUtil from '../../util/apiUtil';
+import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
-import { getCookie, setCookie } from '../../util/cookieUtil';
+import { getCookie, setCookie } from '../util/cookieUtil';
 
 /**
  * Test 1 Page View

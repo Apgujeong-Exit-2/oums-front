@@ -2,7 +2,7 @@
  * 로그인 화면 View
  * @constructor
  */
-import KakaoLoginButton from '../../compent/button/KakaoLoginButton';
+import KakaoLoginButton from '../compent/button/KakaoLoginButton';
 
 const LoginView = () => {
   return (

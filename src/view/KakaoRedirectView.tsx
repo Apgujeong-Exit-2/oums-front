@@ -1,4 +1,4 @@
-import apiUtil from '../../util/apiUtil';
+import apiUtil from '../util/apiUtil';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 

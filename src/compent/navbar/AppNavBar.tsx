@@ -1,42 +1,53 @@
-import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import css from './AppNavBar.module.css';
+import Logo from './Logo';
 import { Link } from 'react-router-dom';
 import PathVariable from '../../consts/PathVariable';
 import KakaoLoginButton from '../button/KakaoLoginButton';
-import classes from './AppNavBar.module.css';
-import '../../img/logo.svg';
-import Logo from './Logo';
 
 const AppNavBar = () => {
   return (
     <>
-      <Container>
-        <Row className={classes.topNavBar}>
-          <Col>
+      <Navbar fixed='top' className={css.root}>
+        <Container fluid className={css.mainContainer}>
+          <Navbar.Brand as={Link} to={PathVariable.MAIN_VIEW_PATH}>
             <Logo />
-          </Col>
-          <Col>
-            <Navbar>
-              <Nav className={classes.topNavText}>
-                <Nav.Link as={Link} to={PathVariable.MAIN_VIEW_PATH}>
-                  홈
-                </Nav.Link>
-                <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH}>
-                  파티추가
-                </Nav.Link>
-                <Nav.Link as={Link} to={PathVariable.LOGIN_VIEW_PATH}>
-                  MY파티
-                </Nav.Link>
-                <Nav.Link as={Link} to={PathVariable.LOGIN_VIEW_PATH}>
-                  가이드
-                </Nav.Link>
-              </Nav>
-            </Navbar>
-          </Col>
-          <Col className={classes.loginButton}>
+          </Navbar.Brand>
+          <Nav className='justify-content-end'>
+            <Nav.Link as={Link} to={PathVariable.ADD_PARTY_PATH}>
+              파티추가
+            </Nav.Link>
+            <Nav.Link as={Link} to={PathVariable.MY_PARTY_PATH}>
+              MY파티
+            </Nav.Link>
+            <Nav.Link as={Link} to={PathVariable.GUIDE_PATH}>
+              가이드
+            </Nav.Link>
+            <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH}>
+              개발 테스트
+            </Nav.Link>
             <KakaoLoginButton />
-          </Col>
-        </Row>
-      </Container>
+          </Nav>
+        </Container>
+      </Navbar>
+      <Navbar fixed='top' className={css.subRoot}>
+        <Container fluid className={css.mainContainer}>
+          <Nav className='justify-content-end'>
+            <Nav.Link as={Link} to={PathVariable.ADD_PARTY_PATH} className={'sub-nav-link'}>
+              파티추가
+            </Nav.Link>
+            <Nav.Link as={Link} to={PathVariable.MY_PARTY_PATH} className={'sub-nav-link'}>
+              MY파티
+            </Nav.Link>
+            <Nav.Link as={Link} to={PathVariable.GUIDE_PATH} className={'sub-nav-link'}>
+              가이드
+            </Nav.Link>
+            <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH} className={'sub-nav-link'}>
+              개발 테스트
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
     </>
   );
 };
