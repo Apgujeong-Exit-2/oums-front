@@ -6,7 +6,6 @@ import AppNavBar from '../compent/navbar/AppNavBar';
 import MainPageView from './MainPageView';
 import LoginView from './LoginView';
 import KakaoRedirectView from './KakaoRedirectView';
-import css from './AppRouterView.module.css';
 import MyPartyView from './myPartyView';
 import FindPartyView from './findPartyView';
 import GuideView from './guideView';
@@ -22,7 +21,7 @@ const AppRouterView = () => {
       <header>
         <AppNavBar />
       </header>
-      <Container className={css.mainContainer} fluid>
+      <Container fluid className='main-container'>
         <Routes>
           {/* 메인 화면 Path */}
           <Route path={PathVariable.ROOT_VIEW_PATH} element={<MainPageView />}>

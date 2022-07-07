@@ -1,18 +1,40 @@
-.nav-link {
-  padding-right: 5rem !important;
+/* common navbar css*/
+.main-nav-bar {
+  height: 80px;
+  padding: 0 20px;
+  background-color: white;
 }
 
-.sub-nav-link {
+.sub-nav-bar {
+  height: 28px;
+  margin-top: 80px;
+  background-color: white;
   display: none;
 }
 
-@media screen and (max-width: 900px) {
-  .nav-link {
-    display: none;
-  }
+.main-nav-container {
+  max-width: 1180px;
+}
 
-  .sub-nav-link {
-    display: block;
-    padding-right: 1rem !important;
+/* main content css */
+.main-container {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 80px;
+  background-color: red;
+}
+
+/* 화면 크기 900 (모바일) */
+@media screen and (max-width: 900px) {
+  .sub-nav-bar {
+    display: flex;
+  }
+  
+  .main-container {
+    padding-top: 108px;
+  }
+  
+  .main-nav-link {
+    display: none;
   }
 }
