@@ -1,11 +1,12 @@
 import axiosConfig from '../lib/axiosConfig';
+import { AxiosResponse } from 'axios';
 
-const get = (url: string) => {
-  return axiosConfig.get(url);
+const get = <T>(url: string): Promise<T> => {
+  return axiosConfig.get<T, AxiosResponse<T>, any>(url).then(({ data }) => data);
 };
 
-const post = (url: string, data: any) => {
-  return axiosConfig.post(url, data);
+const post = <T>(url: string, data: any): Promise<T> => {
+  return axiosConfig.post<T, AxiosResponse<T>, any>(url, data).then(({ data }) => data);
 };
 
 const returnObj = {

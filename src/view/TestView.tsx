@@ -45,11 +45,11 @@ const TestView = (props: any) => {
     switch (type) {
       case 'get':
         const getResponse = await apiUtil.get(getApiUrl);
-        setResponseGetData(getResponse.data);
+        setResponseGetData(getResponse.data.toString);
         break;
       case 'post':
         const postResponse = await apiUtil.post(postApiUrl, { test: 'test' });
-        setResponsePostData(postResponse.data);
+        // setResponsePostData(postResponse.data.toString);
         break;
     }
   };

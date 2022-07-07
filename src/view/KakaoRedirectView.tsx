@@ -1,14 +1,22 @@
 import apiUtil from '../util/apiUtil';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * 카카오톡 로그인 리다이렉트 View
  * @constructor
  */
+interface kakaoSuccess {
+  test1: '';
+  test2: '';
+  test3: '';
+}
+
 const KakaoRedirectView = () => {
   const [code, setCode] = useState(queryString.parse(window.location.search).code);
   const [token, setToken] = useState('');
+  const history = useNavigate();
 
   const getToken = async () => {
     const payload = queryString.stringify({
@@ -19,8 +27,15 @@ const KakaoRedirectView = () => {
     });
 
     if (token === '') {
-      const { data } = await apiUtil.post('https://kauth.kakao.com/oauth/token', payload);
-      setToken(data.access_token);
+      try {
+        const data = await apiUtil.post<kakaoSuccess>(
+          'https://kauth.kakao.com/oauth/token',
+          payload,
+        );
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -28,7 +43,7 @@ const KakaoRedirectView = () => {
     getToken();
   }, [code]);
 
-  return <>{token}</>;
+  return <></>;
 };
 
 export default KakaoRedirectView;
