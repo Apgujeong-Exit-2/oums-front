@@ -3,50 +3,67 @@ import Logo from './Logo';
 import { Link } from 'react-router-dom';
 import PathVariable from '../../consts/PathVariable';
 import KakaoLoginButton from '../button/KakaoLoginButton';
+import React from 'react';
+
+type menuType = {
+  title: string;
+  path: string;
+};
+
+const menuData: menuType[] = [
+  { title: '파티 만들기', path: PathVariable.ADD_PARTY_PATH },
+  { title: 'MY 파티', path: PathVariable.MY_PARTY_PATH },
+  { title: '콘텐츠 검색', path: '' },
+  { title: '이벤트', path: '' },
+  { title: '가이드', path: PathVariable.GUIDE_PATH },
+  { title: '개발 테스트', path: PathVariable.TEST_VIEW_PATH },
+];
+
+const AppLink = (props: { type: string }) => {
+  console.log('AppLink');
+
+  const menu = menuData.map((data) => (
+    <Nav.Link
+      key={data.title}
+      as={data.path !== '' ? Link : undefined}
+      to={data.path}
+      onClick={
+        data.path !== ''
+          ? undefined
+          : () => {
+              alert('개발중');
+            }
+      }
+      className={props.type === 'main' ? 'main-nav-link' : 'sub-nav-link'}
+    >
+      {data.title}
+    </Nav.Link>
+  ));
+
+  return (
+    <Nav className='justify-content-end'>
+      {menu}
+      {props.type === 'main' && <KakaoLoginButton text={'로그인'} />}
+    </Nav>
+  );
+};
 
 const AppNavBar = () => {
+  console.log('AppNavBar');
+
   return (
     <>
       <Navbar fixed='top' className='main-nav-bar'>
-        {/* PC용 메인 네비게이션 */}
         <Container fluid className='main-nav-container'>
           <Navbar.Brand as={Link} to={PathVariable.MAIN_VIEW_PATH}>
             <Logo />
           </Navbar.Brand>
-          <Nav className='justify-content-end'>
-            <Nav.Link as={Link} to={PathVariable.ADD_PARTY_PATH} className='main-nav-link'>
-              파티추가
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.MY_PARTY_PATH} className='main-nav-link'>
-              MY파티
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.GUIDE_PATH} className='main-nav-link'>
-              가이드
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH} className='main-nav-link'>
-              개발 테스트
-            </Nav.Link>
-            <KakaoLoginButton text={'로그인'} />
-          </Nav>
+          <AppLink type='main' />
         </Container>
       </Navbar>
       <Navbar fixed='top' className='sub-nav-bar'>
-        {/* 모바일용 서브 네비게이션 */}
         <Container fluid className='sub-nav-container'>
-          <Nav className='justify-content-end'>
-            <Nav.Link as={Link} to={PathVariable.ADD_PARTY_PATH} className='sub-nav-link'>
-              파티추가
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.MY_PARTY_PATH} className='sub-nav-link'>
-              MY파티
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.GUIDE_PATH} className='sub-nav-link'>
-              가이드
-            </Nav.Link>
-            <Nav.Link as={Link} to={PathVariable.TEST_VIEW_PATH} className='sub-nav-link'>
-              개발 테스트
-            </Nav.Link>
-          </Nav>
+          <AppLink type='sub' />
         </Container>
       </Navbar>
     </>

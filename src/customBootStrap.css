@@ -1,22 +1,27 @@
 /* common navbar css*/
+.main-nav-container {
+  max-width: 1180px;
+}
+
 .main-nav-bar {
   height: 80px;
   padding: 0 20px;
   background-color: white;
 }
 
+.main-nav-link {
+  width: 101px;
+  text-align: center;
+}
+
 .sub-nav-bar {
-  height: 28px;
+  height: 56px;
   margin-top: 80px;
   background-color: white;
   display: none;
 }
 
-.main-nav-container {
-  max-width: 1180px;
-}
-
-/* main content css */
+/* container css */
 .main-container {
   padding-left: 0;
   padding-right: 0;
@@ -28,12 +33,18 @@
 @media screen and (max-width: 900px) {
   .sub-nav-bar {
     display: flex;
+    margin-top: 56px;
+    height: 56px;
   }
   
+  .main-nav-bar {
+    height: 56px;
+  }
+
   .main-container {
-    padding-top: 108px;
+    padding-top: 112px;
   }
-  
+
   .main-nav-link {
     display: none;
   }

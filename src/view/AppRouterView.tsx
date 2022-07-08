@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import PathVariable from '../consts/PathVariable';
 import TestView from './TestView';
 import NotPageView from './NotPageView';
-import AppNavBar from '../compent/navbar/AppNavBar';
 import MainPageView from './MainPageView';
 import LoginView from './LoginView';
 import KakaoRedirectView from './KakaoRedirectView';
@@ -10,12 +9,14 @@ import MyPartyView from './myPartyView';
 import FindPartyView from './findPartyView';
 import GuideView from './guideView';
 import { Container } from 'react-bootstrap';
+import AppNavBar from '../compent/navbar/AppNavBar';
 
 /**
  * 어플리케이션의 전체 라우터를 설정하는 View
  * @constructor
  */
 const AppRouterView = () => {
+  console.log('AppRouterView 랜더링');
   return (
     <>
       <header>

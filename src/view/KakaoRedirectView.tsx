@@ -2,17 +2,12 @@ import apiUtil from '../util/apiUtil';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { kakaoSuccessDto } from '../dto/kakaoResponseDto';
 
 /**
  * 카카오톡 로그인 리다이렉트 View
  * @constructor
  */
-interface kakaoSuccess {
-  test1: '';
-  test2: '';
-  test3: '';
-}
-
 const KakaoRedirectView = () => {
   const [code, setCode] = useState(queryString.parse(window.location.search).code);
   const [token, setToken] = useState('');
@@ -28,11 +23,12 @@ const KakaoRedirectView = () => {
 
     if (token === '') {
       try {
-        const data = await apiUtil.post<kakaoSuccess>(
+        const data = await apiUtil.post<kakaoSuccessDto>(
           'https://kauth.kakao.com/oauth/token',
           payload,
         );
-        console.log(data);
+        alert('Back End 넘겨줘야 함 : ' + data.access_token);
+        history(-1);
       } catch (e) {
         console.log(e);
       }

@@ -44,8 +44,8 @@ const TestView = (props: any) => {
   const onClickApiHandler = async (type: string) => {
     switch (type) {
       case 'get':
-        const getResponse = await apiUtil.get(getApiUrl);
-        setResponseGetData(getResponse.data.toString);
+        const data = await apiUtil.get(getApiUrl);
+        // setResponseGetData(getResponse);
         break;
       case 'post':
         const postResponse = await apiUtil.post(postApiUrl, { test: 'test' });

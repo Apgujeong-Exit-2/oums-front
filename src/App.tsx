@@ -4,6 +4,7 @@ import './customBootStrap.css';
 import AppRouterView from './view/AppRouterView';
 
 const App = () => {
+  console.log('App 랜더링');
   return <AppRouterView />;
 };
 
