@@ -2,6 +2,7 @@ import { Button, Container, FormControl, InputGroup } from 'react-bootstrap';
 import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
+import { DemoPostRequest, DemoPostResponse } from '../dto/DemoDto';
 
 /**
  * Test 1 Page View
@@ -13,14 +14,17 @@ const TestView = (props: any) => {
     console.log('Test View Use Effect 실행');
   }, []);
 
-  const [inputCookie, setInputCookie] = useState<string>('');
+  const [inputCookie, setInputCookie] = useState<string>('테스트 쿠키');
   const [currentCookie, setCurrentCookie] = useState('');
 
-  const [getApiUrl, setGetApiUrl] = useState('');
+  const [getApiUrl, setGetApiUrl] = useState('demo');
   const [responseGetData, setResponseGetData] = useState('');
 
-  const [postApiUrl, setPostApiUrl] = useState('');
-  const [responsePostData, setResponsePostData] = useState('');
+  const [postApiUrl, setPostApiUrl] = useState('demo/post');
+  const [responsePostData, setResponsePostData] = useState<DemoPostResponse>({
+    title: '',
+    content: '',
+  });
 
   // 쿠키 저장 이벤트
   const onClickSaveCookieHandler = () => {
@@ -44,12 +48,13 @@ const TestView = (props: any) => {
   const onClickApiHandler = async (type: string) => {
     switch (type) {
       case 'get':
-        const data = await apiUtil.get(getApiUrl);
-        // setResponseGetData(getResponse);
+        const getData = await apiUtil.get<string>(getApiUrl);
+        setResponseGetData(getData);
         break;
       case 'post':
-        const postResponse = await apiUtil.post(postApiUrl, { test: 'test' });
-        // setResponsePostData(postResponse.data.toString);
+        const postReq: DemoPostRequest = { title: '테스트 제목', content: '테스트 내용' };
+        const postData = await apiUtil.post<DemoPostResponse>(postApiUrl, postReq);
+        setResponsePostData(postData);
         break;
     }
   };
@@ -63,6 +68,7 @@ const TestView = (props: any) => {
           onChange={(event) => {
             setInputCookie(event.target.value);
           }}
+          value={inputCookie}
         />
         <InputGroup.Text>저장된 쿠키 값 : {currentCookie}</InputGroup.Text>
         <Button onClick={onClickSaveCookieHandler}>저장</Button>
@@ -73,6 +79,7 @@ const TestView = (props: any) => {
         <FormControl
           placeholder='GET API 호출 경로'
           onChange={(event) => onChangeApiUrlEvent(event.target.value, 'get')}
+          value={getApiUrl}
         />
         <InputGroup.Text>호출된 Data : {responseGetData}</InputGroup.Text>
         <Button onClick={() => onClickApiHandler('get')}>호출</Button>
@@ -83,8 +90,11 @@ const TestView = (props: any) => {
         <FormControl
           placeholder='POST API 호출 경로'
           onChange={(event) => onChangeApiUrlEvent(event.target.value, 'post')}
+          value={postApiUrl}
         />
-        <InputGroup.Text>호출된 Data : {responsePostData}</InputGroup.Text>
+        <InputGroup.Text>
+          {responsePostData.title + ' : ' + responsePostData.content}
+        </InputGroup.Text>
         <Button onClick={() => onClickApiHandler('post')}>호출</Button>
       </InputGroup>
     </Container>

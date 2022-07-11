@@ -5,9 +5,9 @@ import NotPageView from './NotPageView';
 import MainPageView from './MainPageView';
 import LoginView from './LoginView';
 import KakaoRedirectView from './KakaoRedirectView';
-import MyPartyView from './myPartyView';
-import FindPartyView from './findPartyView';
-import GuideView from './guideView';
+import MyPartyView from './MyPartyView';
+import FindPartyView from './FindPartyView';
+import GuideView from './GuideView';
 import { Container } from 'react-bootstrap';
 import AppNavBar from '../compent/navbar/AppNavBar';
 

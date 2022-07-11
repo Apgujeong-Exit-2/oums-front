@@ -27,8 +27,9 @@ const KakaoRedirectView = () => {
           'https://kauth.kakao.com/oauth/token',
           payload,
         );
+        console.log(data);
         alert('Back End 넘겨줘야 함 : ' + data.access_token);
-        history(-1);
+        // history(-1);
       } catch (e) {
         console.log(e);
       }
