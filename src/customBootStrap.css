@@ -26,7 +26,7 @@
   padding-left: 0;
   padding-right: 0;
   padding-top: 80px;
-  background-color: #fff;
+  background-color: rgb(246, 246, 246);
 }
 
 /* 화면 크기 900 (모바일) */
@@ -61,7 +61,7 @@
   }
 
   .sub-nav-container {
-    width: 500px !important;
+    width: 600px !important;
     height: 56px;
     padding: 0px 8px;
     display: flex;
