@@ -6,7 +6,7 @@ import MainPageView from './MainPageView';
 import LoginView from './LoginView';
 import KakaoRedirectView from './KakaoRedirectView';
 import MyPartyView from './MyPartyView';
-import FindPartyView from './FindPartyView';
+import AddPartyView from './AddPartyView';
 import GuideView from './GuideView';
 import { Container } from 'react-bootstrap';
 import AppNavBar from '../compent/navbar/AppNavBar';
@@ -31,7 +31,7 @@ const AppRouterView = () => {
 
           {/* 상단 메뉴 Path */}
           <Route path={PathVariable.LOGIN_VIEW_PATH} element={<LoginView />} />
-          <Route path={PathVariable.ADD_PARTY_PATH} element={<FindPartyView />} />
+          <Route path={PathVariable.ADD_PARTY_PATH} element={<AddPartyView />} />
           <Route path={PathVariable.MY_PARTY_PATH} element={<MyPartyView />} />
           <Route path={PathVariable.GUIDE_PATH} element={<GuideView />} />
           <Route path={PathVariable.TEST_VIEW_PATH} element={<TestView />} />
