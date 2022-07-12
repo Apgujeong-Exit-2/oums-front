@@ -19,9 +19,8 @@ const menuData: menuType[] = [
   { title: '개발 테스트', path: PathVariable.TEST_VIEW_PATH },
 ];
 
-const AppLink = (props: { type: string }) => {
-  console.log('AppLink');
-
+// Main Navbar 메뉴 링크
+const MainNavbarLink = (props: { type: string }) => {
   const menu = menuData.map((data) => (
     <Nav.Link
       key={data.title}
@@ -58,13 +57,13 @@ const AppNavBar = () => {
           <Navbar.Brand as={Link} to={PathVariable.MAIN_VIEW_PATH}>
             <Logo />
           </Navbar.Brand>
-          <AppLink type='main' />
+          <MainNavbarLink type={'main'} />
         </Container>
       </Navbar>
       <Navbar fixed='top' className='sub-nav-bar'>
-        <Container fluid className='sub-nav-container'>
-          <AppLink type='sub' />
-        </Container>
+        <div className='sub-nav-container'>
+          <MainNavbarLink type={'sub'} />
+        </div>
       </Navbar>
     </>
   );

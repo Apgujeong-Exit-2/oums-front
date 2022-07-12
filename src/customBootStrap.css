@@ -26,26 +26,53 @@
   padding-left: 0;
   padding-right: 0;
   padding-top: 80px;
-  background-color: red;
+  background-color: #fff;
 }
 
 /* 화면 크기 900 (모바일) */
 @media screen and (max-width: 900px) {
-  .sub-nav-bar {
-    display: flex;
-    margin-top: 56px;
-    height: 56px;
-  }
-  
-  .main-nav-bar {
-    height: 56px;
-  }
-
   .main-container {
     padding-top: 112px;
   }
 
   .main-nav-link {
+    display: none;
+  }
+
+  .main-nav-bar {
+    height: 56px;
+  }
+
+  .main-nav-container {
+    padding: 0;
+  }
+
+  .sub-nav-bar {
+    display: flex;
+    margin-top: 56px;
+    height: 56px;
+  }
+
+  .sub-nav-link {
+    font-size: 16px;
+    padding-top: 18px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .sub-nav-container {
+    width: 500px !important;
+    height: 56px;
+    padding: 0px 8px;
+    display: flex;
+    z-index: 5;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    overflow: scroll hidden;
+    scroll-behavior: smooth;
+  }
+
+  .sub-nav-container::-webkit-scrollbar {
     display: none;
   }
 }
