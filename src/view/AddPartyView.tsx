@@ -4,7 +4,7 @@ import MatchingWeekCard from '../compent/addParty/MatchingWeekCard';
 import SelectOttCard from '../compent/addParty/SelectOttCard';
 import GapDiv from '../compent/ui/GapDiv';
 
-interface ott {
+export interface Ott {
   key: number;
   line: number;
   title: string;
@@ -12,7 +12,7 @@ interface ott {
 }
 
 // TODO : 추후 DB 에서?
-const ottList: ott[] = [
+const ottList: Ott[] = [
   {
     key: 1,
     line: 1,
@@ -57,7 +57,7 @@ const addPartyView = () => {
       <Container className={css.container}>
         <MatchingWeekCard />
         <GapDiv height={24} />
-        <SelectOttCard ott={ottList} />
+        <SelectOttCard otts={ottList} />
       </Container>
     </div>
   );

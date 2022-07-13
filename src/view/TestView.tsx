@@ -3,6 +3,7 @@ import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
 import { DemoPostRequest, DemoPostResponse } from '../dto/DemoDto';
+import { motion } from 'framer-motion';
 
 /**
  * Test 1 Page View

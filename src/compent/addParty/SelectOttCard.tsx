@@ -1,21 +1,16 @@
 import { Card, Col, Row } from 'react-bootstrap';
 import css from './SelectOttCard.module.css';
 import { useState } from 'react';
-
-interface ott {
-  key: number;
-  title: string;
-  url: string;
-}
+import { Ott } from '../../view/AddPartyView';
 
 interface props {
-  ott: ott[];
+  otts: Ott[];
 }
 
 const SelectOttCard = (props: props) => {
   const [curr, setCurr] = useState<string>('넷플릭스');
 
-  const ottTsx = props.ott.map((data, index) => (
+  const ottTsx = props.otts.map((data, index) => (
     <Col className={'text-center ' + css.ottCol} key={data.key} onClick={() => setCurr(data.title)}>
       <Card
         className={
