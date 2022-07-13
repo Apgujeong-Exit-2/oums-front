@@ -1,0 +1,31 @@
+.ottImage {
+  width: 44px;
+  height: 44px;
+}
+
+.ottImageCard {
+  background-color: #F8F9FD;
+  border: 1px #F8F9FD solid;
+  height: 75px;
+  margin: 0;
+}
+
+.ottImageCardActive {
+  background-color: #EAFFF7;
+  border: 1px #A2F5D5 solid;
+  height: 75px;
+  margin: 0;
+}
+
+.ottImageCard:hover {
+  background-color: #EAFFF7;
+}
+
+.ottImageText {
+  padding: 0;
+}
+
+.ottCol {
+  padding: 10px;
+  cursor: pointer;
+}

@@ -29,6 +29,12 @@
   height: 100%;
 }
 
+/* card css */
+.card {
+  border: 0;
+  border-radius: 16px;
+}
+
 /* 화면 크기 900 (모바일) */
 @media screen and (max-width: 900px) {
   .main-container {

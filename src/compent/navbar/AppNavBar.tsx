@@ -10,6 +10,7 @@ type menuType = {
   path: string;
 };
 
+// TODO : 추후 DB 에서?
 const menuData: menuType[] = [
   { title: '파티 만들기', path: PathVariable.ADD_PARTY_PATH },
   { title: 'MY 파티', path: PathVariable.MY_PARTY_PATH },

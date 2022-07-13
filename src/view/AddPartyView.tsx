@@ -1,33 +1,63 @@
 import css from './AddPartyView.module.css';
-import { Accordion, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import MatchingWeekCard from '../compent/addParty/MatchingWeekCard';
+import SelectOttCard from '../compent/addParty/SelectOttCard';
+import GapDiv from '../compent/ui/GapDiv';
+
+interface ott {
+  key: number;
+  line: number;
+  title: string;
+  url: string;
+}
+
+// TODO : 추후 DB 에서?
+const ottList: ott[] = [
+  {
+    key: 1,
+    line: 1,
+    title: '넷플릭스',
+    url: 'https://asset.pickle.plus/ott_logo/icon_netflix_x2.png',
+  },
+  {
+    key: 2,
+    line: 1,
+    title: '웨이브',
+    url: 'https://asset.pickle.plus/ott_logo/icon_wavve_x2.png',
+  },
+  {
+    key: 3,
+    line: 1,
+    title: '왓챠',
+    url: 'https://asset.pickle.plus/ott_logo/icon_watcha_x2.png',
+  },
+  {
+    key: 4,
+    line: 2,
+    title: '라프텔',
+    url: 'https://asset.pickle.plus/ott_logo/icon_laftel_x2.png',
+  },
+  {
+    key: 5,
+    line: 2,
+    title: '티빙',
+    url: 'https://asset.pickle.plus/ott_logo/icon_tving_x2.png',
+  },
+  {
+    key: 6,
+    line: 2,
+    title: '디즈니+',
+    url: 'https://asset.pickle.plus/ott_logo/icon_disney_x2.png',
+  },
+]; // ottList
+
 const addPartyView = () => {
   return (
     <div className={css.root}>
       <Container className={css.container}>
-        <Accordion defaultActiveKey={['0']}>
-          <Accordion.Item eventKey='0'>
-            <Accordion.Header>Accordion Item #1</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey='1'>
-            <Accordion.Header>Accordion Item #2</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
+        <MatchingWeekCard />
+        <GapDiv height={24} />
+        <SelectOttCard ott={ottList} />
       </Container>
     </div>
   );
