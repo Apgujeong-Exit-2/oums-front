@@ -1,24 +1,37 @@
+/* ott 이미지 */
 .ottImage {
   width: 44px;
   height: 44px;
 }
 
-.ottImageCard {
-  background-color: #F8F9FD;
-  border: 1px #F8F9FD solid;
-  height: 75px;
-  margin: 0;
+/* 대제목 */
+.ottTitle {
+  padding: 16px 16px 0;
+  font-size: 18px;
 }
 
-.ottImageCardActive {
-  background-color: #EAFFF7;
-  border: 1px #A2F5D5 solid;
+/* ott 카드 */
+.ottImageCard {
+  background-color: var(--oums-defualt-back-color);
+  border: 1px var(--bs-gray-200) solid;
   height: 75px;
   margin: 0;
 }
 
 .ottImageCard:hover {
-  background-color: #EAFFF7;
+  background-color: var(--oums-green-100);
+}
+
+.ottImageTitle { 
+  font-size: 14px
+}
+
+/* ott 카드 클릭 */
+.ottImageCardActive {
+  background-color: var(--oums-green-100);
+  border: 1px var(--bs-teal) solid;
+  height: 75px;
+  margin: 0;
 }
 
 .ottImageText {
@@ -28,4 +41,54 @@
 .ottCol {
   padding: 10px;
   cursor: pointer;
+}
+
+/* ott 상세 정보 */
+.ottInfo {
+  flex-direction: row;
+  max-width: 311px;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 12px;
+  flex: none;
+  display: flex;
+  background-color: var(--oums-defualt-back-color);
+}
+
+.ottInfoTitle {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.ottInfoImage {
+  width: 16px;
+  height: 16px;
+}
+
+.ottInfoOriginPrice {
+  font-size: 11px;
+  margin: 0;
+}
+
+.ottInfoSalePrice {
+  font-size: 11px;
+  margin: 0;
+}
+
+.ottInfoButton {
+  background-color: var(--oums-green-200);
+  border-color: var(--oums-green-200);
+  font-weight: bold;
+  color: white;
+  width: 100%;
+}
+
+.ottInfoButton:hover {
+  background-color: var(--oums-green-600);
+  border-color: var(--oums-green-600);
+  color: white;
+}
+
+.ottChangeButton {
+  font-size: 13px;
 }

@@ -3,7 +3,6 @@ import PathVariable from '../consts/PathVariable';
 import TestView from './TestView';
 import NotPageView from './NotPageView';
 import MainPageView from './MainPageView';
-import LoginView from './LoginView';
 import KakaoRedirectView from './KakaoRedirectView';
 import MyPartyView from './MyPartyView';
 import AddPartyView from './AddPartyView';
@@ -30,7 +29,6 @@ const AppRouterView = () => {
           </Route>
 
           {/* 상단 메뉴 Path */}
-          <Route path={PathVariable.LOGIN_VIEW_PATH} element={<LoginView />} />
           <Route path={PathVariable.ADD_PARTY_PATH} element={<AddPartyView />} />
           <Route path={PathVariable.MY_PARTY_PATH} element={<MyPartyView />} />
           <Route path={PathVariable.GUIDE_PATH} element={<GuideView />} />

@@ -5,8 +5,15 @@
   font-style: normal;
 }
 
+:root {
+  --oums-defualt-back-color: #f8f9fd;
+  --oums-green-100: #eafff7;
+  --oums-green-200: #53E3AC;
+  --oums-green-600: #4DCA9A;
+}
+
 #root {
   font-family: "SpoqaHanSansNeo-Regular", serif;
   height: 100%;
-  background-color: #F8F9FD
+  background-color: var(--oums-defualt-back-color)
 }
