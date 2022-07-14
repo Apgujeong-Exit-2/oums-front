@@ -62,6 +62,7 @@ const SelectOttCard = (props: props) => {
           <Row>{ottTsx.slice(3, 6)}</Row>
         </Card.Body>
         {/* ott 가격 설명 부분 */}
+        {/* TODO : props 데이터 뿌려주기 */}
         <div className={'justify-content-center d-flex pt-3'}>
           <Card className={cssConcat(css.ottInfo)}>
             <Card.Img src={img} alt='emoji_money_bundle_flat' className={css.ottInfoImage} />
