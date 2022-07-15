@@ -14,21 +14,11 @@ interface props {
 
 const SelectOttCard = (props: props) => {
   console.log('SelectOttCard');
-  const [curr, setCurr] = useState<string>('');
-  const [isNext, setIsNext] = useState(false);
-  const [cardHeight, setCardHeight] = useState(275);
+  const [curr, setCurr] = useState<string>(''); // 선택된 ott 종류
+  const [isNext, setIsNext] = useState(false); // ott 선택 종료
+  const [cardHeight, setCardHeight] = useState(275); // 카드 높이
 
-  useEffect(() => {
-    if (isNext) {
-      setCardHeight(55);
-    } else if (curr !== '') {
-      setCardHeight(432);
-    } else if (curr === '') {
-      setCardHeight(275);
-    }
-  }, [curr, isNext]);
-
-  // ott 카드 map
+  // ott 카드 리스트
   const ottTsx = props.otts.map((data, index) => (
     <Col className={'text-center ' + css.ottCol} key={data.key} onClick={() => setCurr(data.title)}>
       <Card
@@ -44,6 +34,22 @@ const SelectOttCard = (props: props) => {
     </Col>
   ));
 
+  // card 높이 셋팅 함수
+  const cardHeightSettingHandler = () => {
+    if (isNext) {
+      setCardHeight(55);
+    } else if (curr !== '') {
+      setCardHeight(432);
+    } else if (curr === '') {
+      setCardHeight(275);
+    }
+  };
+
+  useEffect(() => {
+    console.log('SelectOttCard useEffect');
+    cardHeightSettingHandler();
+  }, [curr, isNext]);
+
   return (
     <Card className={'shadow overflow-hidden'}>
       <motion.div
@@ -55,7 +61,11 @@ const SelectOttCard = (props: props) => {
         {/* ott 카드 노출 부분 */}
         <Card.Body className={cssConcat('fw-bold', css.ottTitle, 'justify-content-between d-flex')}>
           <div>보고싶은 OTT를 선택해주세요</div>
-          <div className={css.ottChangeButton}>변경</div>
+          {isNext && (
+            <div className={css.ottChangeButton} onClick={() => setIsNext(false)}>
+              변경
+            </div>
+          )}
         </Card.Body>
         <Card.Body>
           <Row>{ottTsx.slice(0, 3)}</Row>

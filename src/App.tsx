@@ -5,10 +5,14 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import AppRouterView from './view/AppRouterView';
+import { RecoilRoot } from 'recoil';
 
 const App = () => {
-  console.log('App 랜더링');
-  return <AppRouterView />;
+  return (
+    <RecoilRoot>
+      <AppRouterView />
+    </RecoilRoot>
+  );
 };
 
 export default App;

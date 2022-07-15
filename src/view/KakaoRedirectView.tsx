@@ -17,7 +17,7 @@ const KakaoRedirectView = () => {
       console.log(api);
       // TODO : 카카오 로그인 작업
       // - Back 작업 완료되면 DTO 작업
-      // - 화면 이동
+      // - 화면 이동 (history)
     } catch (e) {
       console.log('통신 오류');
     }

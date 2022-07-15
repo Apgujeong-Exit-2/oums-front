@@ -3,6 +3,9 @@ import { Container } from 'react-bootstrap';
 import MatchingWeekCard from '../compent/addParty/MatchingWeekCard';
 import SelectOttCard from '../compent/addParty/SelectOttCard';
 import GapDiv from '../compent/ui/GapDiv';
+import SelectPartyRoleCard from '../compent/addParty/SelectPartyRoleCard';
+import { useRecoilState } from 'recoil';
+import { addPartyState } from '../recoil/addPartyViewAtom';
 
 export interface Ott {
   key: number; // key
@@ -72,17 +75,21 @@ const ottList: Ott[] = [
   },
 ]; // ottList
 
-const addPartyView = () => {
+const AddPartyView = () => {
+  const [addParty, setAddParty] = useRecoilState(addPartyState);
   console.log('addPartyView');
+  console.log(addParty);
   return (
     <div className={css.root}>
       <Container className={css.container}>
         <MatchingWeekCard />
         <GapDiv height={24} />
         <SelectOttCard otts={ottList} />
+        <GapDiv height={24} />
+        <SelectPartyRoleCard />
       </Container>
     </div>
   );
 };
 
-export default addPartyView;
+export default AddPartyView;

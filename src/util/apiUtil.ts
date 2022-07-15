@@ -1,4 +1,4 @@
-import axiosConfig from '../lib/axiosConfig';
+import axiosConfig from '../axiosConfig';
 import { AxiosResponse } from 'axios';
 
 const get = <T>(url: string): Promise<T> => {
