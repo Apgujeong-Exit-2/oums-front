@@ -2,5 +2,12 @@ import { atom } from 'recoil';
 
 export const addPartyState = atom({
   key: 'addPartyState',
-  default: ['test'],
+  default: {
+    isOttSelect: false,
+  },
+});
+
+export const ottSelect = atom({
+  key: 'ottSelect',
+  default: false,
 });

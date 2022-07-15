@@ -5,7 +5,7 @@ import SelectOttCard from '../compent/addParty/SelectOttCard';
 import GapDiv from '../compent/ui/GapDiv';
 import SelectPartyRoleCard from '../compent/addParty/SelectPartyRoleCard';
 import { useRecoilState } from 'recoil';
-import { addPartyState } from '../recoil/addPartyViewAtom';
+import { ottSelect } from '../recoil/addPartyViewAtom';
 
 export interface Ott {
   key: number; // key
@@ -76,9 +76,9 @@ const ottList: Ott[] = [
 ]; // ottList
 
 const AddPartyView = () => {
-  const [addParty, setAddParty] = useRecoilState(addPartyState);
+  const [b, setOttSelect] = useRecoilState(ottSelect);
   console.log('addPartyView');
-  console.log(addParty);
+  console.log(b);
   return (
     <div className={css.root}>
       <Container className={css.container}>

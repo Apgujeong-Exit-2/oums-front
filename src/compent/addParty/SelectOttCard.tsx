@@ -7,15 +7,19 @@ import { motion } from 'framer-motion';
 import img from '../../img/ott_info.png';
 import GapDiv from '../ui/GapDiv';
 import { cssConcat } from '../../util/stringUtil';
+import { useRecoilState } from 'recoil';
+import { addPartyState, ottSelect } from '../../recoil/addPartyViewAtom';
 
 interface props {
   otts: Ott[];
 }
 
+// TODO : 카드 클릭시 2번씩 실행됨 처리 요망
 const SelectOttCard = (props: props) => {
   console.log('SelectOttCard');
-  const [curr, setCurr] = useState<string>(''); // 선택된 ott 종류
-  const [isNext, setIsNext] = useState(false); // ott 선택 종료
+  const [select, setOttSelect] = useRecoilState(ottSelect);
+  const [curr, setCurr] = useState(''); // 선택된 ott 종류
+  // const [isNext, setIsNext] = useState(false); // ott 선택 종료
   const [cardHeight, setCardHeight] = useState(275); // 카드 높이
 
   // ott 카드 리스트
@@ -36,7 +40,7 @@ const SelectOttCard = (props: props) => {
 
   // card 높이 셋팅 함수
   const cardHeightSettingHandler = () => {
-    if (isNext) {
+    if (select) {
       setCardHeight(55);
     } else if (curr !== '') {
       setCardHeight(432);
@@ -48,7 +52,7 @@ const SelectOttCard = (props: props) => {
   useEffect(() => {
     console.log('SelectOttCard useEffect');
     cardHeightSettingHandler();
-  }, [curr, isNext]);
+  }, [curr, select]);
 
   return (
     <Card className={'shadow overflow-hidden'}>
@@ -61,8 +65,8 @@ const SelectOttCard = (props: props) => {
         {/* ott 카드 노출 부분 */}
         <Card.Body className={cssConcat('fw-bold', css.ottTitle, 'justify-content-between d-flex')}>
           <div>보고싶은 OTT를 선택해주세요</div>
-          {isNext && (
-            <div className={css.ottChangeButton} onClick={() => setIsNext(false)}>
+          {select && (
+            <div className={css.ottChangeButton} onClick={() => setOttSelect(false)}>
               변경
             </div>
           )}
@@ -105,7 +109,7 @@ const SelectOttCard = (props: props) => {
           </Card>
         </div>
         <Card.Body>
-          <Button className={css.ottInfoButton} variant={''} onClick={() => setIsNext(true)}>
+          <Button className={css.ottInfoButton} variant={''} onClick={() => setOttSelect(true)}>
             다음
           </Button>
         </Card.Body>
