@@ -1,0 +1,30 @@
+.roleSelectCard {
+    background-color: var(--oums-defualt-back-color);
+    width: 256px;
+    height: 40px;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.roleSelectText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.roleSelectBord {
+    position: absolute;
+    width: 126px;
+    height: 40px;
+    background-color: white;
+    border-radius: 8px;
+    left: auto;
+}
+
+.roleSvgCard {
+    background-color: #60B0FF;
+    border-radius: 16px 16px 0 0;
+}
+

@@ -1,13 +1,18 @@
 import { atom } from 'recoil';
 
-export const addPartyState = atom({
+interface IState {
+  isOttSelect: boolean;
+  isRoleSelect: boolean;
+  selectOtt: string;
+  selectRole: string;
+}
+
+export const addPartyState = atom<IState>({
   key: 'addPartyState',
   default: {
     isOttSelect: false,
+    isRoleSelect: false,
+    selectOtt: '',
+    selectRole: '',
   },
-});
-
-export const ottSelect = atom({
-  key: 'ottSelect',
-  default: false,
 });

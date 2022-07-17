@@ -3,14 +3,14 @@ import KakaoApiPathVariable from '../../consts/KakaoApiPathVariable';
 import React from 'react';
 import { ButtonVariant } from 'react-bootstrap/types';
 
-interface Props {
+interface IProps {
   style?: React.CSSProperties;
   variant?: ButtonVariant;
   size?: 'sm' | 'lg';
   text: string;
 }
 
-const KakaoLoginButton = (props: Props) => {
+const KakaoLoginButton = (props: IProps) => {
   console.log(props.style);
   // 카카오톡 로그인 버튼 클릭 이벤트
   const onClickKakaoLoginButtonHandler = () => {

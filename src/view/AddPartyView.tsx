@@ -5,9 +5,9 @@ import SelectOttCard from '../compent/addParty/SelectOttCard';
 import GapDiv from '../compent/ui/GapDiv';
 import SelectPartyRoleCard from '../compent/addParty/SelectPartyRoleCard';
 import { useRecoilState } from 'recoil';
-import { ottSelect } from '../recoil/addPartyViewAtom';
+import { addPartyState } from '../recoil/addPartyViewAtom';
 
-export interface Ott {
+export interface IOtt {
   key: number; // key
   title: string; // ott 이름
   imageUrl: string; // 이미지 경로
@@ -18,7 +18,7 @@ export interface Ott {
 }
 
 // TODO : 추후 DB 에서?
-const ottList: Ott[] = [
+const ottList: IOtt[] = [
   {
     key: 1,
     title: '넷플릭스',
@@ -76,9 +76,8 @@ const ottList: Ott[] = [
 ]; // ottList
 
 const AddPartyView = () => {
-  const [b, setOttSelect] = useRecoilState(ottSelect);
+  const [partyState, setPartyState] = useRecoilState(addPartyState);
   console.log('addPartyView');
-  console.log(b);
   return (
     <div className={css.root}>
       <Container className={css.container}>

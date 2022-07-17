@@ -1,33 +1,37 @@
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import css from './SelectOttCard.module.css';
 import { useEffect, useState } from 'react';
-import { Ott } from '../../view/AddPartyView';
 import { motion } from 'framer-motion';
 // @ts-ignore
 import img from '../../img/ott_info.png';
 import GapDiv from '../ui/GapDiv';
 import { cssConcat } from '../../util/stringUtil';
+import { IOtt } from '../../view/AddPartyView';
 import { useRecoilState } from 'recoil';
-import { addPartyState, ottSelect } from '../../recoil/addPartyViewAtom';
+import { addPartyState } from '../../recoil/addPartyViewAtom';
 
-interface props {
-  otts: Ott[];
+interface IProps {
+  otts: IOtt[];
 }
 
 // TODO : 카드 클릭시 2번씩 실행됨 처리 요망
-const SelectOttCard = (props: props) => {
+const SelectOttCard = (props: IProps) => {
   console.log('SelectOttCard');
-  const [select, setOttSelect] = useRecoilState(ottSelect);
-  const [curr, setCurr] = useState(''); // 선택된 ott 종류
-  // const [isNext, setIsNext] = useState(false); // ott 선택 종료
+  const [selectOtt, setSelectOtt] = useState(''); // 선택된 ott 종류
   const [cardHeight, setCardHeight] = useState(275); // 카드 높이
+  const [partyState, setPartyState] = useRecoilState(addPartyState);
 
   // ott 카드 리스트
   const ottTsx = props.otts.map((data, index) => (
-    <Col className={'text-center ' + css.ottCol} key={data.key} onClick={() => setCurr(data.title)}>
+    <Col
+      className={'text-center ' + css.ottCol}
+      key={data.key}
+      onClick={() => setSelectOtt(data.title)}
+    >
       <Card
         className={
-          'align-items-center ' + (curr === data.title ? css.ottImageCardActive : css.ottImageCard)
+          'align-items-center ' +
+          (selectOtt === data.title ? css.ottImageCardActive : css.ottImageCard)
         }
       >
         <Card.Img variant='top' src={data.imageUrl} className={css.ottImage} />
@@ -40,11 +44,11 @@ const SelectOttCard = (props: props) => {
 
   // card 높이 셋팅 함수
   const cardHeightSettingHandler = () => {
-    if (select) {
+    if (partyState.isOttSelect) {
       setCardHeight(55);
-    } else if (curr !== '') {
+    } else if (selectOtt !== '') {
       setCardHeight(432);
-    } else if (curr === '') {
+    } else if (selectOtt === '') {
       setCardHeight(275);
     }
   };
@@ -52,7 +56,7 @@ const SelectOttCard = (props: props) => {
   useEffect(() => {
     console.log('SelectOttCard useEffect');
     cardHeightSettingHandler();
-  }, [curr, select]);
+  }, [selectOtt, partyState.isOttSelect]);
 
   return (
     <Card className={'shadow overflow-hidden'}>
@@ -65,8 +69,11 @@ const SelectOttCard = (props: props) => {
         {/* ott 카드 노출 부분 */}
         <Card.Body className={cssConcat('fw-bold', css.ottTitle, 'justify-content-between d-flex')}>
           <div>보고싶은 OTT를 선택해주세요</div>
-          {select && (
-            <div className={css.ottChangeButton} onClick={() => setOttSelect(false)}>
+          {partyState.isOttSelect && (
+            <div
+              className={css.ottChangeButton}
+              onClick={() => setPartyState({ ...partyState, isOttSelect: false })}
+            >
               변경
             </div>
           )}
@@ -109,7 +116,11 @@ const SelectOttCard = (props: props) => {
           </Card>
         </div>
         <Card.Body>
-          <Button className={css.ottInfoButton} variant={''} onClick={() => setOttSelect(true)}>
+          <Button
+            className={css.ottInfoButton}
+            variant={''}
+            onClick={() => setPartyState({ ...partyState, isOttSelect: true })}
+          >
             다음
           </Button>
         </Card.Body>

@@ -1,9 +1,9 @@
-interface props {
+interface IProps {
   height?: number;
   width?: number;
 }
 
-const GapDiv = (props: props) => {
+const GapDiv = (props: IProps) => {
   return <div style={{ height: props.height, width: props.width }} />;
 };
 

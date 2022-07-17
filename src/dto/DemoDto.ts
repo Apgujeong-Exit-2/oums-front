@@ -1,9 +1,9 @@
-export interface DemoPostResponse {
+export interface IDemoPostResponse {
   title: string;
   content: string;
 }
 
-export interface DemoPostRequest {
+export interface IDemoPostRequest {
   title: string;
   content: string;
 }

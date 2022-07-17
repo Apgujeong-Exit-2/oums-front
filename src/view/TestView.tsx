@@ -2,8 +2,9 @@ import { Button, Container, FormControl, InputGroup } from 'react-bootstrap';
 import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
-import { DemoPostRequest, DemoPostResponse } from '../dto/DemoDto';
-import { motion } from 'framer-motion';
+import { IDemoPostRequest, IDemoPostResponse } from '../dto/DemoDto';
+import { useRecoilState } from 'recoil';
+import { addPartyState } from '../recoil/addPartyViewAtom';
 
 /**
  * Test 1 Page View
@@ -22,7 +23,7 @@ const TestView = (props: any) => {
   const [responseGetData, setResponseGetData] = useState('');
 
   const [postApiUrl, setPostApiUrl] = useState('demo/post');
-  const [responsePostData, setResponsePostData] = useState<DemoPostResponse>({
+  const [responsePostData, setResponsePostData] = useState<IDemoPostResponse>({
     title: '',
     content: '',
   });
@@ -53,8 +54,8 @@ const TestView = (props: any) => {
         setResponseGetData(getData);
         break;
       case 'post':
-        const postReq: DemoPostRequest = { title: '테스트 제목', content: '테스트 내용' };
-        const postData = await apiUtil.post<DemoPostResponse>(postApiUrl, postReq);
+        const postReq: IDemoPostRequest = { title: '테스트 제목', content: '테스트 내용' };
+        const postData = await apiUtil.post<IDemoPostResponse>(postApiUrl, postReq);
         setResponsePostData(postData);
         break;
     }

@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import Logo from './Logo';
+import Logo from '../ui/Logo';
 import { Link } from 'react-router-dom';
 import PathVariable from '../../consts/PathVariable';
 import KakaoLoginButton from '../button/KakaoLoginButton';
