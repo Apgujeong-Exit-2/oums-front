@@ -2,8 +2,6 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 import css from './SelectOttCard.module.css';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-// @ts-ignore
-import img from '../../img/ott_info.png';
 import GapDiv from '../ui/GapDiv';
 import { cssConcat } from '../../util/stringUtil';
 import { IOtt } from '../../view/AddPartyView';
@@ -86,7 +84,11 @@ const SelectOttCard = (props: IProps) => {
         {/* TODO : props 데이터 뿌려주기 */}
         <div className={'justify-content-center d-flex pt-3'}>
           <Card className={cssConcat(css.ottInfo)}>
-            <Card.Img src={img} alt='emoji_money_bundle_flat' className={css.ottInfoImage} />
+            <Card.Img
+              src={'img/ott_info.png'}
+              alt='emoji_money_bundle_flat'
+              className={css.ottInfoImage}
+            />
             <GapDiv width={16} />
             <div>
               <small className={css.ottInfoTitle}>라프텔 프리미엄</small>

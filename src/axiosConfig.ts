@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 // import {getCookie} from "./customCookie";
 
 const API_URL = process.env.REACT_APP_API_BASE_URL;
