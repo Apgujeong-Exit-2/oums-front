@@ -9,13 +9,16 @@ import AddPartyView from './AddPartyView';
 import GuideView from './GuideView';
 import { Container } from 'react-bootstrap';
 import AppNavBar from '../compent/navbar/AppNavBar';
+import React, { useEffect } from 'react';
 
 /**
  * 어플리케이션의 전체 라우터를 설정하는 View
  * @constructor
  */
 const AppRouterView = () => {
-  console.log('AppRouterView 랜더링');
+  useEffect(() => {
+    console.log('AppRouterView 랜더링');
+  }, []);
   return (
     <>
       <header>

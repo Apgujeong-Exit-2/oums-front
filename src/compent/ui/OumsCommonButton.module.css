@@ -1,0 +1,7 @@
+.root {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
+  font-weight: bold;
+  color: white;
+  width: 100%;
+}

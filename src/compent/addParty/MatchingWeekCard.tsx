@@ -1,5 +1,9 @@
 import { Card } from 'react-bootstrap';
 
+/**
+ * 파티 만들기 페이지 - 최근 일주일 매칭 현황
+ * @constructor
+ */
 const MatchingWeekCard = () => {
   return (
     <Card className={'shadow-sm'}>

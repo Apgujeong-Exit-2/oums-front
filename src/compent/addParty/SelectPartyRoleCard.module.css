@@ -1,9 +1,13 @@
 .roleSelectCard {
-  background-color: var(--oums-defualt-back-color);
+  background-color: var(--gray-050);
   width: 256px;
   height: 40px;
   z-index: 1;
   border-radius: 8px;
+}
+
+.roleMainTitle {
+  font-size: 18px;
 }
 
 .roleSelectText {
@@ -33,3 +37,39 @@
   font-size: 13px;
 }
 
+.roleSlideContent {
+  background-color: var(--gray-050);
+  border-radius: 16px;
+  border: 1px solid var(--gray-100);
+}
+
+.roleSlideContentTitle {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.roleSlideContentText {
+  font-size: 12px;
+}
+
+.roleSlideContentSubText {
+  font-weight: bold;
+  color: var(--primary-600);
+}
+
+.roleSlideButton {
+  font-size: 12px;
+  border-radius: 16px;
+  background-color: var(--gray-100);
+  border-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.roleNextButton {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
+  font-weight: bold;
+  color: white;
+  width: 100%;
+}

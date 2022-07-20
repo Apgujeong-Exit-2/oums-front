@@ -3,27 +3,16 @@ import Logo from '../ui/Logo';
 import { Link } from 'react-router-dom';
 import PathVariable from '../../consts/PathVariable';
 import KakaoLoginButton from '../button/KakaoLoginButton';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { menuDataList } from '../../recoil/MenuAtom';
+import { getMenuListData } from '../../service/MenuService';
+import { IMenuResponse } from '../../dto/MenuDto';
 
-// TODO : 추후 DB 에서?
-// const menuData: menuType[] = [
-//   { title: '파티 만들기', path: PathVariable.ADD_PARTY_PATH },
-//   { title: 'MY 파티', path: PathVariable.MY_PARTY_PATH },
-//   { title: '콘텐츠 검색', path: '' },
-//   { title: '이벤트', path: '' },
-//   { title: '가이드', path: PathVariable.GUIDE_PATH },
-//   { title: '개발 테스트', path: PathVariable.TEST_VIEW_PATH },
-// ];
-
-// Main Navbar 메뉴 링크
-const MainNavbarLink = (props: { type: string }) => {
-  const menuData = useRecoilValue(menuDataList);
-
-  const menu = menuData.map((data) => (
+// 메인 네비게이션 레이아웃
+const NavbarLink = (props: { type: string; menuList: IMenuResponse[] }) => {
+  const menu = props.menuList.map((data) => (
     <Nav.Link
-      key={data.title}
+      key={data.id}
       as={data.path !== '' ? Link : undefined}
       to={data.path}
       onClick={
@@ -47,9 +36,12 @@ const MainNavbarLink = (props: { type: string }) => {
   );
 };
 
+// 메인 네비게이션
 const AppNavBar = () => {
-  console.log('AppNavBar');
-
+  const menuList = useRecoilValue(getMenuListData);
+  useEffect(() => {
+    console.log('AppNavBar');
+  }, []);
   return (
     <>
       <Navbar fixed='top' className='main-nav-bar'>
@@ -57,12 +49,12 @@ const AppNavBar = () => {
           <Navbar.Brand as={Link} to={PathVariable.MAIN_VIEW_PATH}>
             <Logo />
           </Navbar.Brand>
-          <MainNavbarLink type={'main'} />
+          <NavbarLink type={'main'} menuList={menuList} />
         </Container>
       </Navbar>
       <Navbar fixed='top' className='sub-nav-bar'>
         <div className='sub-nav-container'>
-          <MainNavbarLink type={'sub'} />
+          <NavbarLink type={'sub'} menuList={menuList} />
         </div>
       </Navbar>
     </>

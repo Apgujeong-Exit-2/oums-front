@@ -3,8 +3,6 @@ import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
 import { IDemoPostRequest, IDemoPostResponse } from '../dto/DemoDto';
-import { useRecoilState } from 'recoil';
-import { addPartyState } from '../recoil/addPartyViewAtom';
 
 /**
  * Test 1 Page View

@@ -4,26 +4,25 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GapDiv from '../ui/GapDiv';
 import { cssConcat } from '../../util/stringUtil';
-import { IOtt } from '../../view/AddPartyView';
 import { useRecoilState } from 'recoil';
-import { addPartyState } from '../../recoil/addPartyViewAtom';
-
-interface IProps {
-  otts: IOtt[];
-}
+import { getAddPartyState } from '../../service/PartyService';
+import { IOttResponse } from '../../dto/OttDto';
 
 // TODO : 카드 클릭시 2번씩 실행됨 처리 요망
-const SelectOttCard = (props: IProps) => {
-  console.log('SelectOttCard');
+/**
+ * 파티 만들기 페이지 - OTT 선택 카드
+ * @constructor
+ */
+const SelectOttCard = (props: { otts: IOttResponse[] }) => {
   const [selectOtt, setSelectOtt] = useState(''); // 선택된 ott 종류
   const [cardHeight, setCardHeight] = useState(275); // 카드 높이
-  const [partyState, setPartyState] = useRecoilState(addPartyState);
+  const [partyState, setPartyState] = useRecoilState(getAddPartyState);
 
   // ott 카드 리스트
   const ottTsx = props.otts.map((data, index) => (
     <Col
       className={'text-center ' + css.ottCol}
-      key={data.key}
+      key={data.id}
       onClick={() => setSelectOtt(data.title)}
     >
       <Card
@@ -52,7 +51,6 @@ const SelectOttCard = (props: IProps) => {
   };
 
   useEffect(() => {
-    console.log('SelectOttCard useEffect');
     cardHeightSettingHandler();
   }, [selectOtt, partyState.isOttSelect]);
 

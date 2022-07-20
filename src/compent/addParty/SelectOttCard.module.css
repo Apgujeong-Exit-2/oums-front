@@ -12,14 +12,14 @@
 
 /* ott 카드 */
 .ottImageCard {
-  background-color: var(--oums-defualt-back-color);
+  background-color: var(--gray-050);
   border: 1px var(--bs-gray-200) solid;
   height: 75px;
   margin: 0;
 }
 
 .ottImageCard:hover {
-  background-color: var(--oums-green-100);
+  background-color: var(--primary-100);
 }
 
 .ottImageTitle { 
@@ -28,7 +28,7 @@
 
 /* ott 카드 클릭 */
 .ottImageCardActive {
-  background-color: var(--oums-green-100);
+  background-color: var(--primary-100);
   border: 1px var(--bs-teal) solid;
   height: 75px;
   margin: 0;
@@ -52,7 +52,7 @@
   padding: 12px;
   flex: none;
   display: flex;
-  background-color: var(--oums-defualt-back-color);
+  background-color: var(--gray-050);
 }
 
 .ottInfoTitle {
@@ -76,16 +76,16 @@
 }
 
 .ottInfoButton {
-  background-color: var(--oums-green-200);
-  border-color: var(--oums-green-200);
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
   font-weight: bold;
   color: white;
   width: 100%;
 }
 
 .ottInfoButton:hover {
-  background-color: var(--oums-green-600);
-  border-color: var(--oums-green-600);
+  background-color: var(--primary-600);
+  border-color: var(--primary-600);
   color: white;
 }
 
