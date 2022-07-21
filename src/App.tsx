@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import AppRouterView from './view/AppRouterView';
 import { RecoilRoot } from 'recoil';
 import React from 'react';
+import OumsCommonModal from './compent/ui/OumsCommonModal';
 
 const App = () => {
   console.log('App');
@@ -14,6 +15,7 @@ const App = () => {
     <RecoilRoot>
       <React.Suspense>
         <AppRouterView />
+        <OumsCommonModal />
       </React.Suspense>
     </RecoilRoot>
   );

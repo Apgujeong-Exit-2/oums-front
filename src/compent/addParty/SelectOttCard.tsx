@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import GapDiv from '../ui/GapDiv';
 import { cssConcat } from '../../util/stringUtil';
 import { useRecoilState } from 'recoil';
-import { getAddPartyState } from '../../service/PartyService';
+import { getAddPartyState } from '../../store/AddPartyStore';
 import { IOttResponse } from '../../dto/OttDto';
 
 // TODO : 카드 클릭시 2번씩 실행됨 처리 요망

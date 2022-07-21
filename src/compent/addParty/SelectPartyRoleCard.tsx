@@ -3,7 +3,7 @@ import { Button, Card, CardImg, Col, Row } from 'react-bootstrap';
 import { cssConcat } from '../../util/stringUtil';
 import css from './SelectPartyRoleCard.module.css';
 import { useRecoilState } from 'recoil';
-import { getAddPartyState } from '../../service/PartyService';
+import { getAddPartyState } from '../../store/AddPartyStore';
 import { ERole } from '../../dto/SlideDto';
 import OumsCommonButton from '../ui/OumsCommonButton';
 

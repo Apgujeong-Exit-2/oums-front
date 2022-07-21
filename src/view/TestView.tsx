@@ -3,6 +3,8 @@ import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
 import { IDemoPostRequest, IDemoPostResponse } from '../dto/DemoDto';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { getCommonModalState } from '../store/CommonModalStore';
 
 /**
  * Test 1 Page View
@@ -25,6 +27,8 @@ const TestView = (props: any) => {
     title: '',
     content: '',
   });
+
+  const setCommonModalState = useSetRecoilState(getCommonModalState);
 
   // 쿠키 저장 이벤트
   const onClickSaveCookieHandler = () => {
@@ -96,6 +100,11 @@ const TestView = (props: any) => {
           {responsePostData.title + ' : ' + responsePostData.content}
         </InputGroup.Text>
         <Button onClick={() => onClickApiHandler('post')}>호출</Button>
+      </InputGroup>
+
+      <InputGroup className='mb-3'>
+        <InputGroup.Text id='basic-addon1'>API 호출하기</InputGroup.Text>
+        <Button onClick={() => setCommonModalState({ isHide: true })}>팝업 호출</Button>
       </InputGroup>
     </Container>
   );
