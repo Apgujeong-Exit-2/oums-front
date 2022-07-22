@@ -1,12 +1,11 @@
-import { Button, Container, FormControl, InputGroup } from 'react-bootstrap';
+import { Container, FormControl, InputGroup } from 'react-bootstrap';
 import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
 import { IDemoPostRequest, IDemoPostResponse } from '../dto/DemoDto';
 import LoginModal from '../compent/modal/LoginModal';
 import useModal from '../hook/useModal';
-import MyPartyView from './MyPartyView';
-import MainPageView from './MainPageView';
+import OumsCommonButton from '../compent/button/OumsCommonButton';
 
 /**
  * Test 1 Page View
@@ -76,7 +75,7 @@ const TestView = (props: any) => {
           value={inputCookie}
         />
         <InputGroup.Text>저장된 쿠키 값 : {currentCookie}</InputGroup.Text>
-        <Button onClick={onClickSaveCookieHandler}>저장</Button>
+        <OumsCommonButton text={'저장'} onClick={onClickSaveCookieHandler} />
       </InputGroup>
 
       <InputGroup className='mb-3'>
@@ -87,7 +86,7 @@ const TestView = (props: any) => {
           value={getApiUrl}
         />
         <InputGroup.Text>호출된 Data : {responseGetData}</InputGroup.Text>
-        <Button onClick={() => onClickApiHandler('get')}>호출</Button>
+        <OumsCommonButton text={'저장'} onClick={() => onClickApiHandler('get')} />
       </InputGroup>
 
       <InputGroup className='mb-3'>
@@ -100,12 +99,12 @@ const TestView = (props: any) => {
         <InputGroup.Text>
           {responsePostData.title + ' : ' + responsePostData.content}
         </InputGroup.Text>
-        <Button onClick={() => onClickApiHandler('post')}>호출</Button>
+        <OumsCommonButton text={'호출'} onClick={() => onClickApiHandler('post')} />
       </InputGroup>
 
       <InputGroup className='mb-3'>
         <InputGroup.Text id='basic-addon1'>API 호출하기</InputGroup.Text>
-        <Button onClick={() => modalOpen(<LoginModal />)}>로그인 팝업 호출</Button>
+        <OumsCommonButton text={'로그인 팝업 호출'} onClick={() => modalOpen(<LoginModal />)} />
       </InputGroup>
     </Container>
   );

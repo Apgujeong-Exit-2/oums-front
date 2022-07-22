@@ -2,11 +2,11 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import Logo from '../ui/Logo';
 import { Link } from 'react-router-dom';
 import PathVariable from '../../consts/PathVariable';
-import KakaoLoginButton from '../button/KakaoLoginButton';
 import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { getMenuListData } from '../../service/MenuService';
 import { IMenuResponse } from '../../dto/MenuDto';
+import OumsCommonButton from '../button/OumsCommonButton';
 
 // 메인 네비게이션 레이아웃
 const NavbarLink = (props: { type: string; menuList: IMenuResponse[] }) => {
@@ -31,10 +31,13 @@ const NavbarLink = (props: { type: string; menuList: IMenuResponse[] }) => {
   return (
     <Nav className='justify-content-end'>
       {menu}
-      {props.type === 'main' && <KakaoLoginButton text={'로그인'} />}
+      {props.type === 'main' && <OumsCommonButton size={'sm'} text={'로그인'} />}
     </Nav>
   );
 };
+
+// style={props.style !== undefined ? props.style : {}}
+// className={props.style === undefined ? css.button : ''}
 
 // 메인 네비게이션
 const AppNavBar = () => {
