@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import css from './OumsCommonButton.module.css';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 
 interface IProps {
   children?: React.ReactNode;

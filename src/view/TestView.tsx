@@ -3,8 +3,10 @@ import apiUtil from '../util/apiUtil';
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../util/cookieUtil';
 import { IDemoPostRequest, IDemoPostResponse } from '../dto/DemoDto';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { getCommonModalState } from '../store/CommonModalStore';
+import LoginModal from '../compent/modal/LoginModal';
+import useModal from '../hook/useModal';
+import MyPartyView from './MyPartyView';
+import MainPageView from './MainPageView';
 
 /**
  * Test 1 Page View
@@ -12,10 +14,6 @@ import { getCommonModalState } from '../store/CommonModalStore';
  * @constructor
  */
 const TestView = (props: any) => {
-  useEffect(() => {
-    console.log('Test View Use Effect 실행');
-  }, []);
-
   const [inputCookie, setInputCookie] = useState<string>('테스트 쿠키');
   const [currentCookie, setCurrentCookie] = useState('');
 
@@ -27,8 +25,7 @@ const TestView = (props: any) => {
     title: '',
     content: '',
   });
-
-  const setCommonModalState = useSetRecoilState(getCommonModalState);
+  const { modalOpen, modalClose } = useModal();
 
   // 쿠키 저장 이벤트
   const onClickSaveCookieHandler = () => {
@@ -62,6 +59,10 @@ const TestView = (props: any) => {
         break;
     }
   };
+
+  useEffect(() => {
+    console.log('Test View Use Effect 실행');
+  }, []);
 
   return (
     <Container>
@@ -104,7 +105,7 @@ const TestView = (props: any) => {
 
       <InputGroup className='mb-3'>
         <InputGroup.Text id='basic-addon1'>API 호출하기</InputGroup.Text>
-        <Button onClick={() => setCommonModalState({ isHide: true })}>팝업 호출</Button>
+        <Button onClick={() => modalOpen(<LoginModal />)}>로그인 팝업 호출</Button>
       </InputGroup>
     </Container>
   );

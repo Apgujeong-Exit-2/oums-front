@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import AppRouterView from './view/AppRouterView';
 import { RecoilRoot } from 'recoil';
 import React from 'react';
-import OumsCommonModal from './compent/ui/OumsCommonModal';
+import OumsCommonModal from './compent/modal/OumsCommonModal';
 
 const App = () => {
   console.log('App');

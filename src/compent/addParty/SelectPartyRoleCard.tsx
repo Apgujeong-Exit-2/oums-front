@@ -5,7 +5,7 @@ import css from './SelectPartyRoleCard.module.css';
 import { useRecoilState } from 'recoil';
 import { getAddPartyState } from '../../store/AddPartyStore';
 import { ERole } from '../../dto/SlideDto';
-import OumsCommonButton from '../ui/OumsCommonButton';
+import OumsCommonButton from '../button/OumsCommonButton';
 
 /**
  * 파티 만들기 페이지 - 이용 역할 선택 카드
