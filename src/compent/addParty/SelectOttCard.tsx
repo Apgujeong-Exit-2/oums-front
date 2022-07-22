@@ -4,31 +4,34 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GapDiv from '../ui/GapDiv';
 import { cssConcat } from '../../util/stringUtil';
-import { useRecoilState } from 'recoil';
-import { getAddPartyState } from '../../store/AddPartyStore';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { getAddPartyState, getCurrentPartyData } from '../../store/AddPartyStore';
 import { IOttResponse } from '../../dto/OttDto';
 
-// TODO : 카드 클릭시 2번씩 실행됨 처리 요망
 /**
  * 파티 만들기 페이지 - OTT 선택 카드
  * @constructor
  */
-const SelectOttCard = (props: { otts: IOttResponse[] }) => {
-  const [selectOtt, setSelectOtt] = useState(''); // 선택된 ott 종류
-  const [cardHeight, setCardHeight] = useState(275); // 카드 높이
+interface IProps {
+  ottList: IOttResponse[];
+}
+
+const SelectOttCard = (props: IProps) => {
   const [partyState, setPartyState] = useRecoilState(getAddPartyState);
+  const [cardHeight, setCardHeight] = useState(275); // 카드 높이
+  const currentPartyData = useRecoilValue(getCurrentPartyData);
 
   // ott 카드 리스트
-  const ottTsx = props.otts.map((data, index) => (
+  const ottTsx = props.ottList.map((data, index) => (
     <Col
       className={'text-center ' + css.ottCol}
       key={data.id}
-      onClick={() => setSelectOtt(data.title)}
+      onClick={() => setPartyState({ ...partyState, selectOtt: data.title })}
     >
       <Card
         className={
           'align-items-center ' +
-          (selectOtt === data.title ? css.ottImageCardActive : css.ottImageCard)
+          (partyState.selectOtt === data.title ? css.ottImageCardActive : css.ottImageCard)
         }
       >
         <Card.Img variant='top' src={data.imageUrl} className={css.ottImage} />
@@ -43,16 +46,16 @@ const SelectOttCard = (props: { otts: IOttResponse[] }) => {
   const cardHeightSettingHandler = () => {
     if (partyState.isOttSelect) {
       setCardHeight(55);
-    } else if (selectOtt !== '') {
+    } else if (partyState.selectOtt !== '') {
       setCardHeight(432);
-    } else if (selectOtt === '') {
+    } else if (partyState.selectOtt === '') {
       setCardHeight(275);
     }
   };
 
   useEffect(() => {
     cardHeightSettingHandler();
-  }, [selectOtt, partyState.isOttSelect]);
+  }, [partyState]);
 
   return (
     <Card className={'shadow overflow-hidden'}>
@@ -79,7 +82,6 @@ const SelectOttCard = (props: { otts: IOttResponse[] }) => {
           <Row>{ottTsx.slice(3, 6)}</Row>
         </Card.Body>
         {/* ott 가격 설명 부분 */}
-        {/* TODO : props 데이터 뿌려주기 */}
         <div className={'justify-content-center d-flex pt-3'}>
           <Card className={cssConcat(css.ottInfo)}>
             <Card.Img
@@ -89,7 +91,7 @@ const SelectOttCard = (props: { otts: IOttResponse[] }) => {
             />
             <GapDiv width={16} />
             <div>
-              <small className={css.ottInfoTitle}>라프텔 프리미엄</small>
+              <small className={css.ottInfoTitle}>{currentPartyData?.title}</small>
               <div className={'justify-content-center d-flex'}>
                 <p
                   className={cssConcat(
@@ -98,19 +100,19 @@ const SelectOttCard = (props: { otts: IOttResponse[] }) => {
                     css.ottInfoOriginPrice,
                   )}
                 >
-                  14.000원
+                  {currentPartyData?.originPrice}원
                 </p>
                 <p className={css.ottInfoSalePrice}>&nbsp;→&nbsp;</p>
-                <p className={css.ottInfoSalePrice}> 3,725원</p>
+                <p className={css.ottInfoSalePrice}> {currentPartyData?.salePrice}원</p>
               </div>
             </div>
             <GapDiv width={16} />
             <div>
               <small className={css.ottInfoTitle}>수수료</small>
               <div className={'justify-content-center d-flex'}>
-                <p className={css.ottInfoOriginPrice}>파티장 490원</p>
+                <p className={css.ottInfoOriginPrice}>파티장 {currentPartyData?.partyHallFee}원</p>
                 <p className={css.ottInfoSalePrice}>&nbsp;|&nbsp;</p>
-                <p className={css.ottInfoSalePrice}>파티원 990원</p>
+                <p className={css.ottInfoSalePrice}>파티원 {currentPartyData?.partyMemberFee}원</p>
               </div>
             </div>
           </Card>

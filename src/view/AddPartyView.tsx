@@ -15,7 +15,7 @@ const AddPartyView = () => {
       <Container className={css.container}>
         <MatchingWeekCard />
         <GapDiv height={24} />
-        <SelectOttCard otts={ottList} />
+        <SelectOttCard ottList={ottList} />
         <GapDiv height={24} />
         <SelectPartyRoleCard />
       </Container>

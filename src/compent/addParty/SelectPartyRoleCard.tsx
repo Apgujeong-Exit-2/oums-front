@@ -14,8 +14,9 @@ import OumsCommonButton from '../button/OumsCommonButton';
 const SelectPartyRoleCard = () => {
   const [partyState, setPartyState] = useRecoilState(getAddPartyState);
 
-  const test = () => {
-    console.log('test');
+  const nextPageClickHandler = () => {
+    // TODO : 로그인 체크 > 카드 등록 페이지로 이동
+    console.log('클릭!');
   };
 
   return (
@@ -101,10 +102,11 @@ const SelectPartyRoleCard = () => {
           </Card>
         </Card.Body>
         <Card.Body>
-          <OumsCommonButton onClick={test}>파티원으로 월 4,444원에 이용하기</OumsCommonButton>
-          {/*<Button variant={''} className={css.roleNextButton}>*/}
-          {/*  파티원으로 월 4,444원에 이용하기*/}
-          {/*</Button>*/}
+          <OumsCommonButton
+            style={{ width: '100%' }}
+            onClick={nextPageClickHandler}
+            text={'파티원으로 월 4,444원에 이용하기'}
+          />
         </Card.Body>
       </motion.div>
     </Card>
