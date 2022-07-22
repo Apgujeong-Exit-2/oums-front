@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Button, Card, CardImg, Col, Row } from 'react-bootstrap';
 import { cssConcat } from '../../util/stringUtil';
 import css from './SelectPartyRoleCard.module.css';
-import { useRecoilState } from 'recoil';
-import { getAddPartyState } from '../../store/AddPartyStore';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { getAddPartyState, getCurrentPartyData } from '../../store/AddPartyStore';
 import { ERole } from '../../dto/SlideDto';
 import OumsCommonButton from '../button/OumsCommonButton';
 
@@ -13,6 +13,7 @@ import OumsCommonButton from '../button/OumsCommonButton';
  */
 const SelectPartyRoleCard = () => {
   const [partyState, setPartyState] = useRecoilState(getAddPartyState);
+  const { salePrice } = useRecoilValue(getCurrentPartyData);
 
   const nextPageClickHandler = () => {
     // TODO : 로그인 체크 > 카드 등록 페이지로 이동
@@ -105,7 +106,7 @@ const SelectPartyRoleCard = () => {
           <OumsCommonButton
             style={{ width: '100%' }}
             onClick={nextPageClickHandler}
-            text={'파티원으로 월 4,444원에 이용하기'}
+            text={`파티원으로 월 ${salePrice}원에 이용하기`}
           />
         </Card.Body>
       </motion.div>
