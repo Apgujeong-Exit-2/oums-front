@@ -8,16 +8,18 @@ interface IState {
   isOttSelect: boolean;
 }
 
+const defaultIStateObj: IState = {
+  isOttSelect: false,
+  selectOtt: '',
+  selectRole: ERole.master,
+};
+
 /**
  * 파티 만들기 상태값
  */
 export const getAddPartyState = atom<IState>({
   key: 'party/getState',
-  default: {
-    isOttSelect: false,
-    selectOtt: '',
-    selectRole: ERole.master,
-  },
+  default: defaultIStateObj,
 });
 
 /**
@@ -28,6 +30,11 @@ export const getCurrentPartyData = selector({
   get: ({ get }) => {
     const { selectOtt } = get(getAddPartyState);
     const ottList = get(getOttListData);
-    return ottList.filter((data) => data.title === selectOtt)[0];
+    const data = ottList.filter((data) => data.title === selectOtt)[0];
+    if (data === undefined) {
+      return ottList[0];
+    } else {
+      return data;
+    }
   },
 });
