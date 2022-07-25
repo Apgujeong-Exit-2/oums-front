@@ -59,7 +59,7 @@ const SelectPartyRoleCard = () => {
         <Card.Body
           className={cssConcat(css.roleMainTitle, 'fw-bold justify-content-between d-flex')}
         >
-          <div>이용 역할을 선택해주세요 {slideIndex}</div>
+          <div>이용 역할을 선택해주세요</div>
         </Card.Body>
         {/* 파티장, 파티원 선택 버튼 카드 */}
         <Card.Body className={'d-flex justify-content-center pt-3'}>
@@ -97,14 +97,18 @@ const SelectPartyRoleCard = () => {
             </Card.Body>
             <Card.Body className={'d-flex justify-content-between'}>
               <Button
-                className={css.roleSlideButton}
+                className={slideIndex !== 0 ? css.roleSlideButton : css.roleSlideButtonHidden}
                 variant={''}
                 onClick={() => slideImagePagingClickHandler(-1)}
               >
                 이전
               </Button>
               <Button
-                className={css.roleSlideButton}
+                className={
+                  slideData.length !== slideIndex + 1
+                    ? css.roleSlideButton
+                    : css.roleSlideButtonHidden
+                }
                 variant={''}
                 onClick={() => slideImagePagingClickHandler(1)}
               >

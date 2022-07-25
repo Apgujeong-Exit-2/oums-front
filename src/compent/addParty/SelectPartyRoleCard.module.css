@@ -66,6 +66,10 @@
   font-weight: bold;
 }
 
+.roleSlideButtonHidden {
+  visibility: hidden;
+}
+
 .roleNextButton {
   background-color: var(--primary-500);
   border-color: var(--primary-500);
