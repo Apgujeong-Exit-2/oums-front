@@ -3,7 +3,7 @@ import css from './SelectOttCard.module.css';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GapDiv from '../ui/GapDiv';
-import { cssConcat } from '../../util/stringUtil';
+import { comma, cssConcat } from '../../util/stringUtil';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { getAddPartyState, getCurrentPartyData } from '../../store/AddPartyStore';
 import { IOttResponse } from '../../dto/OttDto';
@@ -55,7 +55,7 @@ const SelectOttCard = (props: IProps) => {
 
   useEffect(() => {
     cardHeightSettingHandler();
-  }, [partyState]);
+  }, [cardHeightSettingHandler]);
 
   return (
     <Card className={'shadow overflow-hidden'}>
@@ -100,19 +100,23 @@ const SelectOttCard = (props: IProps) => {
                     css.ottInfoOriginPrice,
                   )}
                 >
-                  {currentPartyData?.originPrice}원
+                  {comma(currentPartyData?.originPrice)}원
                 </p>
                 <p className={css.ottInfoSalePrice}>&nbsp;→&nbsp;</p>
-                <p className={css.ottInfoSalePrice}> {currentPartyData?.salePrice}원</p>
+                <p className={css.ottInfoSalePrice}> {comma(currentPartyData?.salePrice)}원</p>
               </div>
             </div>
             <GapDiv width={16} />
             <div>
               <small className={css.ottInfoTitle}>수수료</small>
               <div className={'justify-content-center d-flex'}>
-                <p className={css.ottInfoOriginPrice}>파티장 {currentPartyData?.partyHallFee}원</p>
+                <p className={css.ottInfoOriginPrice}>
+                  파티장 {comma(currentPartyData?.partyHallFee)}원
+                </p>
                 <p className={css.ottInfoSalePrice}>&nbsp;|&nbsp;</p>
-                <p className={css.ottInfoSalePrice}>파티원 {currentPartyData?.partyMemberFee}원</p>
+                <p className={css.ottInfoSalePrice}>
+                  파티원 {comma(currentPartyData?.partyMemberFee)}원
+                </p>
               </div>
             </div>
           </Card>

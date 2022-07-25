@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { Button, Card, CardImg, Col, Row } from 'react-bootstrap';
-import { cssConcat } from '../../util/stringUtil';
+import { comma, cssConcat } from '../../util/stringUtil';
 import css from './SelectPartyRoleCard.module.css';
-import { useRecoilState } from 'recoil';
-import { getAddPartyState } from '../../store/AddPartyStore';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { getAddPartyState, getCurrentPartyData } from '../../store/AddPartyStore';
 import { ERole } from '../../dto/SlideDto';
 import OumsCommonButton from '../button/OumsCommonButton';
+import { getCurrentAddPartySlideData } from '../../service/SlideService';
+import { useState } from 'react';
 
 /**
  * 파티 만들기 페이지 - 이용 역할 선택 카드
@@ -13,10 +15,36 @@ import OumsCommonButton from '../button/OumsCommonButton';
  */
 const SelectPartyRoleCard = () => {
   const [partyState, setPartyState] = useRecoilState(getAddPartyState);
+  const slideData = useRecoilValue(getCurrentAddPartySlideData);
+  const { salePrice } = useRecoilValue(getCurrentPartyData);
 
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  // 다음 버튼
   const nextPageClickHandler = () => {
     // TODO : 로그인 체크 > 카드 등록 페이지로 이동
     console.log('클릭!');
+  };
+
+  // 파티장, 파티원 버튼
+  const roleClickHandler = (type: ERole) => {
+    setPartyState({ ...partyState, selectRole: type });
+    setSlideIndex(0);
+  };
+
+  // 슬라이드 이미지 클릭 이벤트
+  const slideImagePagingClickHandler = (count: number) => {
+    if (count < 0) {
+      if (slideIndex === 0) {
+        return;
+      }
+    } else {
+      if (slideData.length === slideIndex + 1) {
+        return;
+      }
+    }
+
+    setSlideIndex((prevState) => prevState + count);
   };
 
   return (
@@ -31,21 +59,15 @@ const SelectPartyRoleCard = () => {
         <Card.Body
           className={cssConcat(css.roleMainTitle, 'fw-bold justify-content-between d-flex')}
         >
-          <div>이용 역할을 선택해주세요</div>
+          <div>이용 역할을 선택해주세요 {slideIndex}</div>
         </Card.Body>
         {/* 파티장, 파티원 선택 버튼 카드 */}
         <Card.Body className={'d-flex justify-content-center pt-3'}>
           <Row className={css.roleSelectCard}>
-            <Col
-              className={css.roleSelectText}
-              onClick={() => setPartyState({ ...partyState, selectRole: ERole.master })}
-            >
+            <Col className={css.roleSelectText} onClick={() => roleClickHandler(ERole.master)}>
               <div>파티장</div>
             </Col>
-            <Col
-              className={css.roleSelectText}
-              onClick={() => setPartyState({ ...partyState, selectRole: ERole.member })}
-            >
+            <Col className={css.roleSelectText} onClick={() => roleClickHandler(ERole.member)}>
               <div>파티원</div>
             </Col>
             <motion.div
@@ -62,17 +84,30 @@ const SelectPartyRoleCard = () => {
           <Card className={'shadow'}>
             <Card.Body className={'d-flex justify-content-center p-0'}>
               <div>
-                <CardImg src={'img/addPartyMaster1.png'} className={css.roleImgCard} />
+                <CardImg src={slideData[slideIndex].imgPath} className={css.roleImgCard} />
               </div>
             </Card.Body>
             <Card.Body>
-              <Card.Text className={css.roleImgText}>
-                4명이서 같이보면 4배 더 저렴하니깐!
-                <br /> 파티장으로 시작하고 파티원을 모집해보세요.
-              </Card.Text>
+              <Card.Text
+                className={css.roleImgText}
+                dangerouslySetInnerHTML={{
+                  __html: slideData[slideIndex].detailText.replace(/\n/g, '<br/>'),
+                }}
+              />
             </Card.Body>
-            <Card.Body className={'d-flex justify-content-end'}>
-              <Button className={css.roleSlideButton} variant={''}>
+            <Card.Body className={'d-flex justify-content-between'}>
+              <Button
+                className={css.roleSlideButton}
+                variant={''}
+                onClick={() => slideImagePagingClickHandler(-1)}
+              >
+                이전
+              </Button>
+              <Button
+                className={css.roleSlideButton}
+                variant={''}
+                onClick={() => slideImagePagingClickHandler(1)}
+              >
                 다음
               </Button>
             </Card.Body>
@@ -105,7 +140,7 @@ const SelectPartyRoleCard = () => {
           <OumsCommonButton
             style={{ width: '100%' }}
             onClick={nextPageClickHandler}
-            text={'파티원으로 월 4,444원에 이용하기'}
+            text={`파티원으로 월 ${comma(salePrice)}원에 이용하기`}
           />
         </Card.Body>
       </motion.div>

@@ -7,7 +7,7 @@ export enum ERole {
 /* 파티 만들기 부분 Slide 리스트 Response */
 export interface ISlideResponse {
   id: number;
-  imgUrl: string;
+  imgPath: string;
   detailText: string;
   roleType: ERole;
 }
