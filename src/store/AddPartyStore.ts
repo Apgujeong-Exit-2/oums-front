@@ -1,15 +1,17 @@
 import { atom, selector } from 'recoil';
 import { ERole } from '../dto/SlideDto';
-import { getOttListData } from '../service/OttService';
+import { getOttListService } from '../service/OttService';
 
 interface IState {
   selectOtt: string;
   selectRole: ERole;
   isOttSelect: boolean;
+  isRoleSelect: boolean;
 }
 
 const defaultIStateObj: IState = {
   isOttSelect: false,
+  isRoleSelect: false,
   selectOtt: '',
   selectRole: ERole.master,
 };
@@ -29,7 +31,7 @@ export const getCurrentPartyData = selector({
   key: 'party/getCurrentPartyData',
   get: ({ get }) => {
     const { selectOtt } = get(getAddPartyState);
-    const ottList = get(getOttListData);
+    const ottList = get(getOttListService);
     const data = ottList.filter((data) => data.title === selectOtt)[0];
     if (data === undefined) {
       return ottList[0];

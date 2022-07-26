@@ -5,10 +5,15 @@ import SelectOttCard from '../compent/addParty/SelectOttCard';
 import GapDiv from '../compent/ui/GapDiv';
 import SelectPartyRoleCard from '../compent/addParty/SelectPartyRoleCard';
 import { useRecoilValue } from 'recoil';
-import { getOttListData } from '../service/OttService';
+import { getOttListService } from '../service/OttService';
+import KakaoLoginButton from '../compent/button/KakaoLoginButton';
+import { getCurrentAddPartySlideDataService } from '../service/SlideService';
+import { getAddPartyState } from '../store/AddPartyStore';
 
 const AddPartyView = () => {
-  const ottList = useRecoilValue(getOttListData);
+  const ottList = useRecoilValue(getOttListService);
+  const slideList = useRecoilValue(getCurrentAddPartySlideDataService); // 선택된 role(파티장, 파티원)에 따른 슬라이드 데이터
+  const { isRoleSelect } = useRecoilValue(getAddPartyState);
 
   return (
     <div className={css.root}>
@@ -17,7 +22,9 @@ const AddPartyView = () => {
         <GapDiv height={24} />
         <SelectOttCard ottList={ottList} />
         <GapDiv height={24} />
-        <SelectPartyRoleCard />
+        <SelectPartyRoleCard slideList={slideList} />
+        <GapDiv height={24} />
+        {isRoleSelect && <KakaoLoginButton />}
       </Container>
     </div>
   );

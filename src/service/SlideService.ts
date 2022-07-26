@@ -6,17 +6,17 @@ import { getAddPartyState } from '../store/AddPartyStore';
 /**
  * 파티 만들기 슬라이드 조회
  */
-export const getAddPartySlideListData = selector<ISlideResponse[]>({
+export const getAddPartySlideListService = selector<ISlideResponse[]>({
   key: 'slide/addPartySlide',
   get: async ({ get }) => {
     return await apiUtil.get<ISlideResponse[]>('/slide/list?type=addParty');
   },
 });
 
-export const getCurrentAddPartySlideData = selector<ISlideResponse[]>({
+export const getCurrentAddPartySlideDataService = selector<ISlideResponse[]>({
   key: 'slide/currentPartySlide',
   get: ({ get }) => {
-    const slideData = get(getAddPartySlideListData);
+    const slideData = get(getAddPartySlideListService);
     const { selectRole } = get(getAddPartyState);
     return slideData.filter((data) => data.roleType === selectRole);
   },

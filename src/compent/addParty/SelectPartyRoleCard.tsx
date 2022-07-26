@@ -4,26 +4,27 @@ import { comma, cssConcat } from '../../util/stringUtil';
 import css from './SelectPartyRoleCard.module.css';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { getAddPartyState, getCurrentPartyData } from '../../store/AddPartyStore';
-import { ERole } from '../../dto/SlideDto';
+import { ERole, ISlideResponse } from '../../dto/SlideDto';
 import OumsCommonButton from '../button/OumsCommonButton';
-import { getCurrentAddPartySlideData } from '../../service/SlideService';
 import { useState } from 'react';
 
 /**
  * 파티 만들기 페이지 - 이용 역할 선택 카드
  * @constructor
  */
-const SelectPartyRoleCard = () => {
-  const [partyState, setPartyState] = useRecoilState(getAddPartyState);
-  const slideData = useRecoilValue(getCurrentAddPartySlideData);
-  const { salePrice } = useRecoilValue(getCurrentPartyData);
-
-  const [slideIndex, setSlideIndex] = useState(0);
+interface IProps {
+  slideList: ISlideResponse[];
+}
+const SelectPartyRoleCard = ({ slideList }: IProps) => {
+  const [partyState, setPartyState] = useRecoilState(getAddPartyState); // 파티 만들기 전체 상태 데이터
+  const { salePrice } = useRecoilValue(getCurrentPartyData); // 선택된 ott 가격 데이터
+  const [slideIndex, setSlideIndex] = useState(0); // 슬라이드 현재 count
 
   // 다음 버튼
   const nextPageClickHandler = () => {
     // TODO : 로그인 체크 > 카드 등록 페이지로 이동
-    console.log('클릭!');
+    setPartyState({ ...partyState, isRoleSelect: true });
+    console.log(partyState);
   };
 
   // 파티장, 파티원 버튼
@@ -34,16 +35,6 @@ const SelectPartyRoleCard = () => {
 
   // 슬라이드 이미지 클릭 이벤트
   const slideImagePagingClickHandler = (count: number) => {
-    if (count < 0) {
-      if (slideIndex === 0) {
-        return;
-      }
-    } else {
-      if (slideData.length === slideIndex + 1) {
-        return;
-      }
-    }
-
     setSlideIndex((prevState) => prevState + count);
   };
 
@@ -53,13 +44,21 @@ const SelectPartyRoleCard = () => {
         className={'flex-column'}
         transition={{ type: 'just' }}
         initial={{ height: 0 }}
-        animate={{ height: partyState.isOttSelect ? '100%' : 55 }}
+        animate={{ height: partyState.isOttSelect && !partyState.isRoleSelect ? '100%' : 55 }}
       >
         {/* 상단 카드 제목 카드 */}
         <Card.Body
           className={cssConcat(css.roleMainTitle, 'fw-bold justify-content-between d-flex')}
         >
           <div>이용 역할을 선택해주세요</div>
+          {partyState.isRoleSelect && (
+            <div
+              className={css.roleChangeButton}
+              onClick={() => setPartyState({ ...partyState, isRoleSelect: false })}
+            >
+              다시 보기
+            </div>
+          )}
         </Card.Body>
         {/* 파티장, 파티원 선택 버튼 카드 */}
         <Card.Body className={'d-flex justify-content-center pt-3'}>
@@ -84,14 +83,14 @@ const SelectPartyRoleCard = () => {
           <Card className={'shadow'}>
             <Card.Body className={'d-flex justify-content-center p-0'}>
               <div>
-                <CardImg src={slideData[slideIndex].imgPath} className={css.roleImgCard} />
+                <CardImg src={slideList[slideIndex].imgPath} className={css.roleImgCard} />
               </div>
             </Card.Body>
             <Card.Body>
               <Card.Text
                 className={css.roleImgText}
                 dangerouslySetInnerHTML={{
-                  __html: slideData[slideIndex].detailText.replace(/\n/g, '<br/>'),
+                  __html: slideList[slideIndex].detailText.replace(/\n/g, '<br/>'),
                 }}
               />
             </Card.Body>
@@ -105,7 +104,7 @@ const SelectPartyRoleCard = () => {
               </Button>
               <Button
                 className={
-                  slideData.length !== slideIndex + 1
+                  slideList.length !== slideIndex + 1
                     ? css.roleSlideButton
                     : css.roleSlideButtonHidden
                 }
@@ -142,7 +141,7 @@ const SelectPartyRoleCard = () => {
         </Card.Body>
         <Card.Body>
           <OumsCommonButton
-            style={{ width: '100%' }}
+            style={{ width: '100%', height: '45px' }}
             onClick={nextPageClickHandler}
             text={`파티원으로 월 ${comma(salePrice)}원에 이용하기`}
           />

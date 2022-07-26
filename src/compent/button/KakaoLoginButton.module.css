@@ -1,0 +1,21 @@
+.root {
+  height: 52px;
+  padding: 11px 0px 10px;
+  background: rgb(254, 229, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 8px;
+  border: 0;
+  font-weight: bold;
+}
+
+.root:hover {
+  background: var(--yellow-300)
+}
+
+.buttonImg {
+  width: 24px;
+  height: 24px;
+}

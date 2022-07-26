@@ -14,12 +14,14 @@ const KakaoRedirectView = () => {
   const getToken = async () => {
     try {
       const api = await apiUtil.get(`${process.env.REACT_APP_KAKAO_REDIRECT_URL}?code=${code}`);
+      alert('로그인 기능 api 완성되야함');
       console.log(api);
       // TODO : 카카오 로그인 작업
       // - Back 작업 완료되면 DTO 작업
       // - 화면 이동 (history)
+      history('/');
     } catch (e) {
-      console.log('통신 오류');
+      console.error('통신 오류');
     }
   };
 

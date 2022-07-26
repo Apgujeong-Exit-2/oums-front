@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PathVariable from '../../consts/PathVariable';
 import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { getMenuListData } from '../../service/MenuService';
+import { getMenuListService } from '../../service/MenuService';
 import { IMenuResponse } from '../../dto/MenuDto';
 import OumsCommonButton from '../button/OumsCommonButton';
 
@@ -41,7 +41,7 @@ const NavbarLink = (props: { type: string; menuList: IMenuResponse[] }) => {
 
 // 메인 네비게이션
 const AppNavBar = () => {
-  const menuList = useRecoilValue(getMenuListData);
+  const menuList = useRecoilValue(getMenuListService);
   useEffect(() => {
     console.log('AppNavBar');
   }, []);

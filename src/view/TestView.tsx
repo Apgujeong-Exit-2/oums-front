@@ -6,6 +6,7 @@ import { IDemoPostRequest, IDemoPostResponse } from '../dto/DemoDto';
 import LoginModal from '../compent/modal/LoginModal';
 import useModal from '../hook/useModal';
 import OumsCommonButton from '../compent/button/OumsCommonButton';
+import KakaoLoginButton from '../compent/button/KakaoLoginButton';
 
 /**
  * Test 1 Page View
@@ -105,6 +106,10 @@ const TestView = (props: any) => {
       <InputGroup className='mb-3'>
         <InputGroup.Text id='basic-addon1'>API 호출하기</InputGroup.Text>
         <OumsCommonButton text={'로그인 팝업 호출'} onClick={() => modalOpen(<LoginModal />)} />
+      </InputGroup>
+
+      <InputGroup className='mb-3'>
+        <KakaoLoginButton />
       </InputGroup>
     </Container>
   );

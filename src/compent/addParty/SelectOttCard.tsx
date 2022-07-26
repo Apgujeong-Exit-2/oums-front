@@ -1,6 +1,6 @@
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import css from './SelectOttCard.module.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GapDiv from '../ui/GapDiv';
 import { comma, cssConcat } from '../../util/stringUtil';
@@ -55,7 +55,7 @@ const SelectOttCard = (props: IProps) => {
 
   useEffect(() => {
     cardHeightSettingHandler();
-  }, [cardHeightSettingHandler]);
+  }, [partyState]);
 
   return (
     <Card className={'shadow overflow-hidden'}>
